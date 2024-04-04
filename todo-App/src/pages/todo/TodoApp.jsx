@@ -27,13 +27,14 @@ export const TodoApp = () => {
     dispatch(startLogoutUser());
   };
 
-   const { uid } = useSelector(state => state.authentication.userAuthenticated);
+  const { uid } = useSelector(
+    (state) => state.authentication.userAuthenticated
+  );
 
   return (
     <TodoLayout>
-      <TaskView></TaskView>
-      {/*
-     
+      {/* <TaskView></TaskView>*/}
+
       <Grid container spacing={2}>
         <Grid item xs={12} md={12} xl={4}>
           <Button variant="contained" onClick={() => createTask(task, uid)}>
@@ -55,9 +56,6 @@ export const TodoApp = () => {
           <PendingList />
         </Grid>
       </Grid>
-     
-     
-     */}
     </TodoLayout>
   );
 };
