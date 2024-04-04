@@ -1,17 +1,20 @@
-import { collection, doc, setDoc } from "firebase/firestore/lite"
+import { collection, doc, getDoc, setDoc } from "firebase/firestore/lite"
 import { firebaseStore } from "../../config/config"
 
 
-export const createTask = async (task,uid) =>{
+export const createTaskData = async (task,uid) =>{
 
-    const newTask = doc(collection(firebaseStore, `${uid}/todos/tasks/`));
+    const newTaskDataRef = doc(collection(firebaseStore, `${uid}/todos/tasks/`));
 
-    await setDoc(newTask,task);
+    await setDoc(newTaskDataRef,task);
 
-    task.id = newTask.id;
 
-    console.log(newTask);
-    console.log(task)
+
+    const newTaskData = (await getDoc(newTaskDataRef)).data();
+
+    const newTask = {...newTaskData,id:newTaskData.id};
+
+    return newTask;
     
 }
 

@@ -2,15 +2,14 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { startLogoutUser } from "../../store/auth/authThunk";
 import { TodoLayout } from "./layout/TodoLayout";
-import { TodoList } from "./components/TodoList";
 import { Button, Grid, Paper, Typography, styled } from "@mui/material";
 import { TodoInformation } from "./components/TodoInformation";
 import { PendingList } from "./components/PendingList";
-import { createTask } from "../../provider/firebase/functions/todos/createTask";
-import { task } from "../../data/task";
+import { taskWithData } from "../../data/task";
 
 import { useSelector } from "react-redux";
-import { TaskView } from "./TaskView";
+import { startCreateTask } from "../../store/todos/taskThunk";
+import { TodoList } from "./components/todo/TodoList";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -31,13 +30,17 @@ export const TodoApp = () => {
     (state) => state.authentication.userAuthenticated
   );
 
+  const onClickCreateTaskData = () =>{
+    dispatch(startCreateTask(taskWithData))
+  }
+
   return (
     <TodoLayout>
       {/* <TaskView></TaskView>*/}
 
       <Grid container spacing={2}>
         <Grid item xs={12} md={12} xl={4}>
-          <Button variant="contained" onClick={() => createTask(task, uid)}>
+          <Button variant="contained" onClick={onClickCreateTaskData}>
             <Typography color={"black"}>Create</Typography>
           </Button>
 
