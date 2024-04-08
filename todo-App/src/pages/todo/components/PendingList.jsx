@@ -1,4 +1,4 @@
-import { Divider, List, Typography } from "@mui/material";
+import { Divider, List } from "@mui/material";
 import React from "react";
 import { Comments } from "./Comments";
 import { Title } from "./Title";
@@ -14,7 +14,7 @@ export const PendingList = () => {
           bgcolor: "main.error",
           position: "relative",
           overflow: "auto",
-          maxHeight: { xs: 500, sm: 300, md: 300, lg: 400, xl: 370 },
+          maxHeight: { xs: 500, sm: 'auto', md: 480, lg: 500, xl: 370 },
           "& ul": { padding: 0 },
         }}
         subheader={<li />}

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { credentialsCheck, login } from "../../../../store/auth/authSlice";
 import { firebaseAuth } from "../../config/config";
 import { startLoadTasks } from "../../../../store/todos/taskThunk";
+import { noTaskSelectedInitialState } from "../../../../store/todos/taskSlice";
 
 export const checkUserAuthenticated = () => {
   const { status } = useSelector((state) => state.authentication);
@@ -13,6 +14,7 @@ export const checkUserAuthenticated = () => {
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, async (user) => {
+      dispatch(noTaskSelectedInitialState(""));
       if (user) {
         dispatch(credentialsCheck());
         setTimeout(() => {

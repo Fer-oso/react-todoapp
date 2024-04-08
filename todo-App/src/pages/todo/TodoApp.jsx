@@ -2,14 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { startLogoutUser } from "../../store/auth/authThunk";
 import { TodoLayout } from "./layout/TodoLayout";
-import { Button, Grid, Paper, Typography, styled } from "@mui/material";
+import { Button, Divider, Grid, Paper, Typography, styled } from "@mui/material";
 import { TodoInformation } from "./components/TodoInformation";
-import { PendingList } from "./components/PendingList";
 import { taskWithData } from "../../data/task";
 
-import { useSelector } from "react-redux";
 import { startCreateTask } from "../../store/todos/taskThunk";
 import { TodoList } from "./components/todo/TodoList";
+import { Title } from "./components/Title";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -25,11 +24,7 @@ export const TodoApp = () => {
   const onClickSignOut = () => {
     dispatch(startLogoutUser());
   };
-
-  const { uid } = useSelector(
-    (state) => state.authentication.userAuthenticated
-  );
-
+  
   const onClickCreateTaskData = () =>{
     dispatch(startCreateTask(taskWithData))
   }
@@ -39,7 +34,7 @@ export const TodoApp = () => {
       {/* <TaskView></TaskView>*/}
 
       <Grid container spacing={2}>
-        <Grid item xs={12} md={12} xl={4}>
+        <Grid item xs={12} md={4} xl={4}>
           <Button variant="contained" onClick={onClickCreateTaskData}>
             <Typography color={"black"}>Create</Typography>
           </Button>
@@ -48,15 +43,18 @@ export const TodoApp = () => {
             <Typography color={"black"}>Logout</Typography>
           </Button>
 
+          <Title title={"List of Tasks"} variant="h4" />
+          <Divider>To view</Divider>
           <TodoList />
         </Grid>
 
-        <Grid item xs={12} md={6} xl={4}>
+        <Grid item xs={12} md={4} xl={4}>
           <TodoInformation />
         </Grid>
 
-        <Grid item xs={12} md={6} xl={4}>
-          <PendingList />
+        <Grid item xs={12} md={4} xl={4}>
+          {/*  <PendingList />
+           */}{" "}
         </Grid>
       </Grid>
     </TodoLayout>

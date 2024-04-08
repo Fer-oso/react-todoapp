@@ -3,21 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 export const taskSlice = createSlice({
   name: "tasks",
   initialState: {
-    task: {
-      id: "",
-      title: "", // titulo de la tarea, ejemplo.  Crear vista para vender remeras
-      description: "", //descripcion para saber de que trata la tarea y que debe realizarse
-      comments: [{}], // los comentarios se van a basar en lo que dejen el/los usuario/s sobre como ve la tarea
-      changes: [{}], // son comentarios en donde se van dejando los cambios realizados, es para mantenerse informados
-      status: {
-        comment: "",
-      }, // estado de la tarea  sin tomar - tomada -iniciado - en proceso - pausa - pendiente - finalizado
-      finishDate: "", // fecha estimada de finalizacion
-      createAt: "",
-    },
+    task: {},
     listTasks: [{}],
+    taskSelected: {},
+    listTasksSelected: [{}],
   },
   reducers: {
+    noTaskSelectedInitialState: (state, action) => {
+      state.taskSelected = action.payload.taskSelected;
+    },
+
     createTask: (state, action) => {
       state.task = action.payload;
     },
@@ -25,8 +20,33 @@ export const taskSlice = createSlice({
     loadTasks: (state, action) => {
       state.listTasks = action.payload;
       state.task = action.payload.task;
+      state.listTasksSelected = action.payload.listTasksSelected;
     },
+    setTaskSelected: (state, action) => {
+      state.task = action.payload.task;
+      state.taskSelected = action.payload;
+    },
+
+    taskEnabledChecked: (state) => {
+      state.taskSelected.enabled = !state.taskSelected.enabled;
+    },
+
+    taskApprovedChecked: (state, action) => {
+      state.taskSelected.checked = action.payload;
+    },
+
+    taskDeniedChecked:(state,action) =>{
+      state.taskSelected.checked = action.payload;
+    }
   },
 });
 
-export const { createTask, loadTasks } = taskSlice.actions;
+export const {
+  noTaskSelectedInitialState,
+  createTask,
+  loadTasks,
+  setTaskSelected,
+  taskEnabledChecked,
+  taskApprovedChecked,
+  taskDeniedChecked,
+} = taskSlice.actions;

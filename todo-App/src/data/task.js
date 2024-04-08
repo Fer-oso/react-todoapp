@@ -1,29 +1,35 @@
 export const task = {
   id: "",
-  title: "",
-  comments: [{}],
-  changes: [{}],
-  status: "",
-  finishDate: "",
+  title: "", // titulo de la tarea, ejemplo.  Crear vista para vender remeras
+  description: "", //descripcion para saber de que trata la tarea y que debe realizarse
+  comments: [{}], // los comentarios se van a basar en lo que dejen el/los usuario/s sobre como ve la tarea
+  changes: [{}], // son comentarios en donde se van dejando los cambios realizados, es para mantenerse informados
+  status: {
+    comment: "",
+  }, // estado de la tarea  sin tomar - tomada -iniciado - en proceso - pausa - pendiente - finalizado
+  finishDate: "", // fecha estimada de finalizacion
+  createAt: "",
 };
 
 export const taskWithData = {
-  id: "1",
-  title: "Create a Template About us",
+  enabled: false,
+  checked: "default",
+  id: "",
+  title: "Create a Template About view",
   comments: [
     {
       week: "1 ",
-      date: " Day 8-3-03-2024",
+      date: " Day 15-3-03-2024",
       comment: [
         {
-          severity: "info",
+          severity: "success",
           text:
             " Lorem ipsum dolor sit, amet consectetur adipisicing elit.Voluptatum quas eveniet error velit enim officia repellendusvoluptatibus cumque molestiae nobis." +
             "Hic ipsam voluptate suscipitmolestiae veniam. Inventore blanditiis sed aliquid!",
         },
 
         {
-          severity: "info",
+          severity: "sucess",
           text:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit." +
             "Voluptatum quas eveniet error velit enim officia repellendus" +
@@ -39,7 +45,7 @@ export const taskWithData = {
         },
 
         {
-          severity: "success",
+          severity: "error",
           text:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit." +
             "Voluptatum quas eveniet error velit enim officia repellendus" +
@@ -54,14 +60,14 @@ export const taskWithData = {
       date: "Day 12-03-2024",
       comment: [
         {
-          severity: "success",
+          severity: "error",
           text:
             " Lorem ipsum dolor sit, amet consectetur adipisicing elit.Voluptatum quas eveniet error velit enim officia repellendusvoluptatibus cumque molestiae nobis." +
             "Hic ipsam voluptate suscipitmolestiae veniam. Inventore blanditiis sed aliquid!",
         },
 
         {
-          severity: "info",
+          severity: "error",
           text:
             "Lorem ipsum dolor sit, amet consectetur adipisicing elit." +
             "Voluptatum quas eveniet error velit enim officia repellendus" +

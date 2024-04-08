@@ -8,8 +8,6 @@ export const createTaskData = async (task,uid) =>{
 
     await setDoc(newTaskDataRef,task);
 
-
-
     const newTaskData = (await getDoc(newTaskDataRef)).data();
 
     const newTask = {...newTaskData,id:newTaskData.id};

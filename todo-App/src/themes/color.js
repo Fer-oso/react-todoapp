@@ -8,10 +8,15 @@ export const colorTheme = createTheme({
       second: grey,
     },
     secondary: {
-      main: grey[400],
+      main: grey[200],
     },
     error: {
       main: grey[50],
     },
+
+    listItem:{
+      approved: green[100],
+      denied: red[100]
+    }
   },
 });

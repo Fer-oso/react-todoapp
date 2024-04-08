@@ -2,7 +2,7 @@ import { StarOutline } from "@mui/icons-material";
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 
-export const NothingSelected = () => {
+export const NothingSelected = ({title = ""}) => {
   return (
     <>
       <Grid
@@ -17,7 +17,7 @@ export const NothingSelected = () => {
         </Grid>
         <Grid>
          
-          <Typography color="black">You not have notes Create one</Typography>
+          <Typography color="black">{title}</Typography>
         </Grid>
       </Grid>
     </>

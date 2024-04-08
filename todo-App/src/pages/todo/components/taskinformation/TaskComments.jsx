@@ -19,7 +19,7 @@ export const TaskComments = () => {
         }}
         subheader={<li />}
       >
-         <Comments />
+        { /* <Comments />*/}
         </List>       
       </Grid>
     </>

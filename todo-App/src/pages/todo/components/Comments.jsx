@@ -1,6 +1,5 @@
 import {
   Alert,
-  Button,
   Divider,
   List,
   ListItem,
@@ -10,28 +9,31 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { listTask } from "../../../data/listTasks";
+
+import { useSelector } from "react-redux";
 
 export const Comments = () => {
+ const { taskSelected } = useSelector((state) => state.tasks);
+
   return (
     <Stack spacing={1} sx={{ width: "100%" }}>
-      {listTask.map((task) => (
-        <List key={task.id}>
-          {task.comments.map((commentData,index) => (
+      <List>
+        {taskSelected.comments.map((commentData) => (
+          <>
+            <ListSubheader key={taskSelected.id}>
+              <Typography
+                variant="h5"
+                color="black"
+                textAlign="center"
+                gutterBottom
+                fontWeight="fontWeightBold"
+              >
+                {`Week ${commentData.week}  - ${commentData.date}`}
+              </Typography>
+            </ListSubheader>
             <>
-              <ListSubheader key={index}>
-                <Typography
-                  variant="h5"
-                  color="black"
-                  textAlign="center"
-                  gutterBottom
-                  fontWeight="fontWeightBold"
-                >
-                  {`Week ${commentData.week}  - ${commentData.date}`}
-                </Typography>
-              </ListSubheader>
-              {commentData.comment.map(comm =>(
-                  <ListItem alignItems="flex-start">
+              {commentData.comment.map((comm, index) => (
+                <ListItem alignItems="flex-start" key={index}>
                   <ListItemButton>
                     <Alert variant="filled" severity={comm.severity}>
                       {comm.text}
@@ -40,9 +42,10 @@ export const Comments = () => {
                 </ListItem>
               ))}
             </>
-          ))}
-        </List>
-      ))}
+          </>
+        ))}
+      </List>
+
       <Divider></Divider>
     </Stack>
   );
