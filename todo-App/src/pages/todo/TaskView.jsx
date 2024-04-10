@@ -1,15 +1,15 @@
 import { Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import { TaskComments } from "./components/taskinformation/TaskComments";
-import { ListTask } from "./components/taskinformation/ListTask";
+import { ListSubTasks } from "./components/taskinformation/ListSubTasks";
 import { TaskInformation } from "./components/taskinformation/TaskInformation";
 import { CommentTaskSelected } from "./components/taskinformation/CommentTaskSelected";
 
 export const TaskView = () => {
   return (
-    <Grid container marginTop={2}>
+    <Grid container marginTop={1} spacing={2}>
       <Grid item xs={12} md={3}>
-        <ListTask />
+        <ListSubTasks />
       </Grid>
       <Grid item xs={12} md={5}>
         <TaskInformation />

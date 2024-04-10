@@ -31,20 +31,17 @@ export const TodoApp = () => {
 
   return (
     <TodoLayout>
-      {/* <TaskView></TaskView>*/}
+
+      <Button variant="contained" onClick={onClickCreateTaskData}>
+        <Typography color={"black"}>Create</Typography>
+      </Button>
+
+      <Button variant="contained" onClick={onClickSignOut}>
+        <Typography color={"black"}>Logout</Typography>
+      </Button>
 
       <Grid container spacing={2}>
         <Grid item xs={12} md={4} xl={4}>
-          <Button variant="contained" onClick={onClickCreateTaskData}>
-            <Typography color={"black"}>Create</Typography>
-          </Button>
-
-          <Button variant="contained" onClick={onClickSignOut}>
-            <Typography color={"black"}>Logout</Typography>
-          </Button>
-
-          <Title title={"List of Tasks"} variant="h4" />
-          <Divider>To view</Divider>
           <TodoList />
         </Grid>
 
@@ -57,6 +54,7 @@ export const TodoApp = () => {
            */}{" "}
         </Grid>
       </Grid>
+      
     </TodoLayout>
   );
 };

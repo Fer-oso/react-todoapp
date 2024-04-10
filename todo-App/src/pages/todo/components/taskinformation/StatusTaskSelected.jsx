@@ -16,37 +16,30 @@ import React from "react";
 export const StatusTaskSelected = () => {
   return (
     <Grid>
-      <ListItem>
-        <StarBorder />
-        <Typography fontWeight={"fontWeightBold"}>Starred</Typography>
-      </ListItem>
-      <List  >
+      <List>
+        <Typography
+          variant="body1"
+          color={"black"}
+          fontWeight={"fontWeightBold"}
+        >
+          Resumen
+        </Typography>
 
-        
-        <ListSubheader sx={{ marginTop: "10px" }}>
-          <Typography
-            variant="body1"
-            color={"black"}
-            fontWeight={"fontWeightBold"}
-          >
-            Resumen
-          </Typography>
-        </ListSubheader>
+        <Typography variant="body2">
+          The creation of the Template stay in a good way, we have made a lot of
+          progress, this week must finalized the information and comments
+          sections. <br />
+          The proyect must finalized in three weeks
+        </Typography>
 
-        <Container> <Typography>
-        The creation of the Template stay in a good way, we have made a lot of progress, this week must 
-        finalized the information and comments sections, <br/><br/> The proyect must finalized in three weeks
-        </Typography></Container>
-       
-        <ListSubheader sx={{ marginTop: "10px" }}>
-          <Typography
-            variant="body1"
-            color={"black"}
-            fontWeight={"fontWeightBold"}
-          >
-            Changes history
-          </Typography>
-        </ListSubheader>
+        <Typography
+          marginTop={2}
+          variant="body1"
+          color={"black"}
+          fontWeight={"fontWeightBold"}
+        >
+          Changes history
+        </Typography>
 
         <ListItem alignItems="flex-start">
           <ListItemAvatar>

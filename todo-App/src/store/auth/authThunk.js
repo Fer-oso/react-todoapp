@@ -15,27 +15,29 @@ export const startCreationUserWithEmailAndPassword = ({
       password,
     });
 
-    dispatch(register({status, errorMessage }));
+    dispatch(register({ status, errorMessage }));
   };
 };
 
-export const startLoginUserwithEmailAndPassword = ({email,password}) =>{
-  return async (dispatch) =>{
+export const startLoginUserwithEmailAndPassword = ({ email, password }) => {
+  
 
-    const {status, userAuthenticated} = await loginUserWithEmailAndPassword({email,password});
+  return async (dispatch) => {
+    const { status, userAuthenticated } = await loginUserWithEmailAndPassword({
+      email,
+      password,
+    });
 
     if (status === "authenticated") {
+      dispatch(login({ status, userAuthenticated }));
+    }
+  };
+};
 
-      dispatch(login({status,userAuthenticated}))
-    } 
-  }
-}
+export const startLogoutUser = () => {
+  return async (dispatch) => {
+    const { status } = await logoutUser();
 
-export const startLogoutUser = () =>{
-  return async(dispatch) =>{
-
-    const {status} = await logoutUser();
-
-    dispatch(logout({status}))
-  }
-}
+    dispatch(logout({ status }));
+  };
+};

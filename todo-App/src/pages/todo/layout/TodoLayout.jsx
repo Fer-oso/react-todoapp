@@ -6,7 +6,7 @@ export const TodoLayout = ({children}) => {
   return (
    <Grid >
     <Box component='main' position="relative">
-    <NavBar/>
+   
     {children}
     </Box>
    </Grid>

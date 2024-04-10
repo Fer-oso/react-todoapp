@@ -1,36 +1,33 @@
 import {
-  DraftsOutlined,
+  Assignment,
+  AssignmentIndOutlined,
+  AssignmentOutlined,
   ExpandLess,
   ExpandMore,
-  HandshakeOutlined,
-  InboxOutlined,
-  PhoneAndroidOutlined,
-  RemoveRedEye,
-  SendOutlined,
-  StarBorder,
-  Work,
-  WorkOutline,
+  HandshakeOutlined, PhoneAndroidOutlined,
+  RemoveRedEye, StarBorder, WorkOutline
 } from "@mui/icons-material";
 import {
-  Avatar,
-  Checkbox,
   Collapse,
-  Container,
-  Grid,
-  IconButton,
+  Container, IconButton,
   List,
   ListItem,
   ListItemAvatar,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
-  Typography,
+  Divider
 } from "@mui/material";
+
+import {useSelector} from 'react-redux'
+
 import React, { useState } from "react";
 import { Title } from "../Title";
 
-export const ListTask = () => {
+export const ListSubTasks = () => {
+
+  const {taskSelected} = useSelector(state =>state.tasks)
+
   const [open, setOpen] = useState([]);
 
   const [checked, setChecked] = React.useState([1]);
@@ -60,33 +57,23 @@ export const ListTask = () => {
   icons[1] = <PhoneAndroidOutlined />;
 
   return (
-    <Grid sx={{ width: "100%" }}>
-     
-      <Title title={"Task N° 165232"} />
+    <Container>
+      <Title title={taskSelected.title} />
+      <Divider></Divider>
       <List
+        component="nav"
         sx={{
-          width: "100%",
-          bgcolor: "primary.main",
-          maxHeight: 300,
+          maxHeight: { xs: 150 },
           position: "relative",
           overflow: "auto",
-          "& ul": { padding: 0 },
+          marginTop:'20px'
         }}
-        component="nav"
-        subheader={
-          <ListSubheader
-            component="div"
-            id="nested-list-subheader"
-          ></ListSubheader>
-        }
       >
-        {[1, 2, 3, 4, 5, 6].map((value, index) => {
-          const labelId = `checkbox-list-secondary-label-${value}`;
+        {taskSelected.subTasks.map((value, index) => {
           return (
             <>
-              {" "}
               <ListItem
-                key={value}
+                key={index}
                 secondaryAction={
                   <IconButton
                     edge="end"
@@ -100,12 +87,12 @@ export const ListTask = () => {
               >
                 <ListItemButton>
                   <ListItemAvatar>
-                    <IconButton>{icons[index]}</IconButton>
+                    <AssignmentOutlined></AssignmentOutlined>
                   </ListItemAvatar>
                   <ListItemText
                     id={value}
                     primary={
-                      "Create a Template for information" /*`Line item ${value + 1}`*/
+                      value.title /*`Line item ${value + 1}`*/
                     }
                   />
                 </ListItemButton>
@@ -136,6 +123,6 @@ export const ListTask = () => {
           );
         })}
       </List>
-    </Grid>
+    </Container>
   );
 };

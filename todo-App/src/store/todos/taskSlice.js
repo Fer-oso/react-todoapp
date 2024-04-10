@@ -22,22 +22,21 @@ export const taskSlice = createSlice({
       state.task = action.payload.task;
       state.listTasksSelected = action.payload.listTasksSelected;
     },
-    setTaskSelected: (state, action) => {
-      state.task = action.payload.task;
+
+    taskSelectedEnabled: (state, action) => {
       state.taskSelected = action.payload;
     },
 
-    taskEnabledChecked: (state) => {
-      state.taskSelected.enabled = !state.taskSelected.enabled;
-    },
+    taskSelectedChecked: (state, action) => {
+      state.taskSelected = action.payload;
 
-    taskApprovedChecked: (state, action) => {
-      state.taskSelected.checked = action.payload;
+      state.listTasks = state.listTasks.map((task) => {
+        if (task.id === action.payload.id) {
+          return action.payload;
+        }
+        return task;
+      });
     },
-
-    taskDeniedChecked:(state,action) =>{
-      state.taskSelected.checked = action.payload;
-    }
   },
 });
 
@@ -45,8 +44,6 @@ export const {
   noTaskSelectedInitialState,
   createTask,
   loadTasks,
-  setTaskSelected,
-  taskEnabledChecked,
-  taskApprovedChecked,
-  taskDeniedChecked,
+  taskSelectedEnabled,
+  taskSelectedChecked,
 } = taskSlice.actions;

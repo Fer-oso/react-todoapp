@@ -13,14 +13,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 export const Comments = () => {
- const { taskSelected } = useSelector((state) => state.tasks);
+  const { taskSelected } = useSelector((state) => state.tasks);
 
   return (
     <Stack spacing={1} sx={{ width: "100%" }}>
       <List>
-        {taskSelected.comments.map((commentData) => (
+        {taskSelected.comments.map((comment, index) => (
           <>
-            <ListSubheader key={taskSelected.id}>
+            <ListSubheader key={index}>
               <Typography
                 variant="h5"
                 color="black"
@@ -28,17 +28,15 @@ export const Comments = () => {
                 gutterBottom
                 fontWeight="fontWeightBold"
               >
-                {`Week ${commentData.week}  - ${commentData.date}`}
+                {`Week ${comment.week}  - ${comment.date}`}
               </Typography>
             </ListSubheader>
             <>
-              {commentData.comment.map((comm, index) => (
+              {comment.comment.map((comm, index) => (
                 <ListItem alignItems="flex-start" key={index}>
-                  <ListItemButton>
-                    <Alert variant="filled" severity={comm.severity}>
-                      {comm.text}
-                    </Alert>
-                  </ListItemButton>
+                  <Alert variant="filled" severity={comm.severity}>
+                    {comm.text}
+                  </Alert>
                 </ListItem>
               ))}
             </>
