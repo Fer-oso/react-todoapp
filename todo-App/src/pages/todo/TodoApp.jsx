@@ -46,7 +46,7 @@ export const TodoApp = () => {
         </Grid>
 
         <Grid item xs={12} md={4} xl={4}>
-          <TodoInformation />
+        <TodoInformation />
         </Grid>
 
         <Grid item xs={12} md={4} xl={4}>

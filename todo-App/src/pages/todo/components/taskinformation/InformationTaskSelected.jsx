@@ -28,7 +28,7 @@ export const InformationTaskSelected = ({ taskSelected }) => {
       </ListItem>
 
       <ListItem>
-        <StatusTaskSelected />
+        <StatusTaskSelected taskSelected={taskSelected}/>
       </ListItem>
     </List>
   );

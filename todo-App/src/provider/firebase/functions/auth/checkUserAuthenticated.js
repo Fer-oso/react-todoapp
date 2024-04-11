@@ -17,7 +17,7 @@ export const checkUserAuthenticated = () => {
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, async (user) => {
-      dispatch(noTaskSelectedInitialState(""));
+      
       if (user) {
         dispatch(credentialsCheck());
         setTimeout(() => {

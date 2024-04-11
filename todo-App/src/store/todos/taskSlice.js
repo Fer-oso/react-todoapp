@@ -4,9 +4,9 @@ export const taskSlice = createSlice({
   name: "tasks",
   initialState: {
     task: {},
-    listTasks: [{}],
-    taskSelected: {},
-    listTasksSelected: [{}],
+    listTasks: null,
+    taskSelected: null,
+    listTasksSelected: null,
   },
   reducers: {
     noTaskSelectedInitialState: (state, action) => {

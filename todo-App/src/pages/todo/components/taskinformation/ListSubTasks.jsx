@@ -1,6 +1,4 @@
 import {
-  Assignment,
-  AssignmentIndOutlined,
   AssignmentOutlined,
   ExpandLess,
   ExpandMore,
@@ -19,7 +17,7 @@ import {
   Divider
 } from "@mui/material";
 
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux';
 
 import React, { useState } from "react";
 import { Title } from "../Title";
@@ -66,62 +64,58 @@ export const ListSubTasks = () => {
           maxHeight: { xs: 150 },
           position: "relative",
           overflow: "auto",
-          marginTop:'20px'
+          marginTop: "20px",
         }}
       >
-        {taskSelected.subTasks.map((value, index) => {
-          return (
-            <>
-              <ListItem
-                key={index}
-                secondaryAction={
-                  <IconButton
-                    edge="end"
-                    aria-label="info-task"
-                    onClick={handleToggle(value, index)}
-                  >
-                    {open[index] ? <ExpandLess /> : <ExpandMore />}
-                  </IconButton>
-                }
-                disablePadding
-              >
-                <ListItemButton>
-                  <ListItemAvatar>
-                    <AssignmentOutlined></AssignmentOutlined>
-                  </ListItemAvatar>
-                  <ListItemText
-                    id={value}
-                    primary={
-                      value.title /*`Line item ${value + 1}`*/
-                    }
-                  />
+        {taskSelected.subTasks.map((value, index) => (
+          <>
+            <ListItem
+              key={index}
+              secondaryAction={
+                <IconButton
+                  edge="end"
+                  aria-label="info-task"
+                  onClick={handleToggle(value, index)}
+                >
+                  {open[index] ? <ExpandLess /> : <ExpandMore />}
+                </IconButton>
+              }
+              disablePadding
+            >
+              <ListItemButton>
+                <ListItemAvatar>
+                  <AssignmentOutlined></AssignmentOutlined>
+                </ListItemAvatar>
+                <ListItemText
+                  id={value}
+                  primary={value.title /*`Line item ${value + 1}`*/}
+                />
+              </ListItemButton>
+            </ListItem>
+            <Collapse in={open[index]} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <StarBorder />
+                  </ListItemIcon>
+                  <ListItemText primary="Starred" />
                 </ListItemButton>
-              </ListItem>
-              <Collapse in={open[index]} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <StarBorder />
-                    </ListItemIcon>
-                    <ListItemText primary="Starred" />
-                  </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <HandshakeOutlined />
-                    </ListItemIcon>
-                    <ListItemText primary="Bussines" />
-                  </ListItemButton>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon>
-                      <RemoveRedEye />
-                    </ListItemIcon>
-                    <ListItemText primary="View" />
-                  </ListItemButton>
-                </List>
-              </Collapse>
-            </>
-          );
-        })}
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <HandshakeOutlined />
+                  </ListItemIcon>
+                  <ListItemText primary="Bussines" />
+                </ListItemButton>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <RemoveRedEye />
+                  </ListItemIcon>
+                  <ListItemText primary="View" />
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </>
+        ))}
       </List>
     </Container>
   );

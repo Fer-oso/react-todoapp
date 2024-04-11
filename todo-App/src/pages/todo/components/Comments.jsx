@@ -16,35 +16,32 @@ export const Comments = () => {
   const { taskSelected } = useSelector((state) => state.tasks);
 
   return (
-    <Stack spacing={1} sx={{ width: "100%" }}>
-      <List>
-        {taskSelected.comments.map((comment, index) => (
+    <>
+      {taskSelected.comments.map((comment, index) => (
+        <>
+          <ListSubheader key={index}>
+            <Typography
+              variant="h5"
+              color="black"
+              textAlign="center"
+              gutterBottom
+              fontWeight="fontWeightBold"
+            >
+              {`Week ${comment.week}  - ${comment.date}`}
+            </Typography>
+          </ListSubheader>
           <>
-            <ListSubheader key={index}>
-              <Typography
-                variant="h5"
-                color="black"
-                textAlign="center"
-                gutterBottom
-                fontWeight="fontWeightBold"
-              >
-                {`Week ${comment.week}  - ${comment.date}`}
-              </Typography>
-            </ListSubheader>
-            <>
-              {comment.comment.map((comm, index) => (
-                <ListItem alignItems="flex-start" key={index}>
-                  <Alert variant="filled" severity={comm.severity}>
-                    {comm.text}
-                  </Alert>
-                </ListItem>
-              ))}
-            </>
+            {comment.comment.map((comm, index) => (
+              <ListItem alignItems="flex-start" key={index}>
+                <Alert variant="filled" severity={comm.severity}>
+                  {comm.text}
+                </Alert>
+              </ListItem>
+            ))}
+            <Divider></Divider>
           </>
-        ))}
-      </List>
-
-      <Divider></Divider>
-    </Stack>
+        </>
+      ))}
+    </>
   );
 };

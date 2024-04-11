@@ -20,7 +20,7 @@ export const TodoList = () => {
           maxHeight: 300,
         }}
       >
-        {listTasks.length > 0 ? (
+        {!!listTasks ? (
           <ListTasksToView />
         ) : (
           <NothingSelected title="You not have Tasks to check 😎" />

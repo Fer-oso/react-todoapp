@@ -20,6 +20,8 @@ export const startLoadTasks = () => {
 
     const listTaskData = await loadListTasksData(uid);
 
+    if( listTaskData.length === 0) return
+
     dispatch(loadTasks(listTaskData));
   };
 };
