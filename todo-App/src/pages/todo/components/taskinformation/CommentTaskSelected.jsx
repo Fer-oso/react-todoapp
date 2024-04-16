@@ -16,7 +16,7 @@ import { Title } from "../Title";
 export const CommentTaskSelected = () => {
   return (
     <Container sx={{ marginTop: { xs: "10px", xl: "0px" } }}>
-      <Title title={"Write comment"} />
+      <Title title={"Write comment"} variant="body1" />
       <Divider></Divider>
       <Grid>
         <form>
@@ -28,6 +28,7 @@ export const CommentTaskSelected = () => {
                 placeholder="write one title for the task"
                 variant="standard"
                 fullWidth
+                size="small"
               />
             </Grid>
             <Grid item xs={12}>
@@ -38,6 +39,7 @@ export const CommentTaskSelected = () => {
                 rows={5}
                 fullWidth
                 placeholder="Write your changes / comments"
+                size="small"
               />
             </Grid>
           </Grid>

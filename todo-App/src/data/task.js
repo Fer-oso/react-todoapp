@@ -1,3 +1,5 @@
+import { dayFormater } from "../pages/utils/dayFormater";
+
 export const generalTask = {
   id: "",
   title: "", // titulo de la tarea, ejemplo.  Crear vista para vender remeras
@@ -99,37 +101,52 @@ export const taskWithData = {
   changes: [
     {
       user: "",
-      comment:
-        "12-3-24 / 20:03 hs <br /> Se realizo el cambio en el header, ya no tiene puntas redondeadas donde deben ser rectangulares",
+      comment: {
+        date: "12-3-24 / 20:03",
+        text: "Se realizo el cambio en el header, ya no tiene puntas redondeadas donde deben ser rectangulares ",
+      },
     },
     {
       user: "",
-      comment:
-        "11-3-24 / 20:03 hs <br /> Se realizo el cambio necesario en el NavBar para que se pueda navegar correctamente",
+      comment: {
+        date: "11-3-24 / 20:03",
+        text: "Se realizo el cambio necesario en el NavBar para que se pueda navegar correctamente ",
+      },
     },
     {
       user: "",
-      comment:
-        " 11-3-24 / 13:11 hs <br /> Se realizo el cambio en la fuentes que generaban conflicto entre menus",
+      comment: {
+        date: " 11-3-24 / 13:11",
+        text: "Se realizo el cambio en la fuentes que generaban conflicto entre menus ",
+      },
     },
     {
       user: "",
-      comment:
-        "09-3-24 / 07:03 hs <br /> Se realizo el cambio en el menu, se pusieron bien las fuentes",
+      comment: {
+        date: " 09-3-24 / 07:03",
+        text: "Se realizo el cambio en el menu, se pusieron bien las fuentes",
+      },
     },
     {
       user: "",
-      comment: " 09-3-24 / 11:03 hs <br /> Se realizo el cambio en el template",
+      comment: {
+        date: " 09-3-24 / 11:03",
+        text: "Se realizo el cambio en el template",
+      },
     },
     {
       user: "",
-      comment:
-        "8-3-24 / 16:23 hs <br />Se realizo el cambio en la fuentes que generaban conflicto entre comentarios",
+      comment: {
+        date: " 8-3-24 / 16:23",
+        text: "Se realizo el cambio en la fuentes que generaban conflicto entre comentarios",
+      },
     },
     {
       user: "",
-      comment:
-        "  8-3-24 / 13:11 hs <br />Se realizo el cambio en la fuentes que generaban conflicto entre menus",
+      comment: {
+        date: "  8-3-24 / 13:11",
+        text: "Se realizo el cambio en la fuentes que generaban conflicto entre menus",
+      },
     },
   ],
 
@@ -226,46 +243,61 @@ export const taskWithData = {
       changes: [
         {
           user: "",
-          comment:
-            "12-3-24 / 20:03 hs <br /> Se realizo el cambio en el header, ya no tiene puntas redondeadas donde deben ser rectangulares",
+          comment: {
+            date: "12-3-24 / 20:03",
+            text: "Se realizo el cambio en el header, ya no tiene puntas redondeadas donde deben ser rectangulares",
+          },
         },
         {
           user: "",
-          comment:
-            "11-3-24 / 20:03 hs <br /> Se realizo el cambio necesario en el NavBar para que se pueda navegar correctamente",
+          comment: {
+            date: "11-3-24 / 15:03",
+            text: "Se realizo el cambio necesario en el NavBar para que se pueda navegar correctamente",
+          },
         },
         {
           user: "",
-          comment:
-            " 11-3-24 / 13:11 hs <br /> Se realizo el cambio en la fuentes que generaban conflicto entre menus",
+          comment: {
+            date: " 11-3-24 / 13:11",
+            text: "Se realizo el cambio en la fuentes que generaban conflicto entre menus",
+          },
         },
         {
           user: "",
-          comment:
-            "09-3-24 / 07:03 hs <br /> Se realizo el cambio en el menu, se pusieron bien las fuentes",
+          comment: {
+            date: " 09-3-24 / 07:03",
+            text: "Se realizo el cambio en el menu, se pusieron bien las fuentes",
+          },
         },
         {
           user: "",
-          comment:
-            " 09-3-24 / 11:03 hs <br /> Se realizo el cambio en el template",
+          comment: {
+            date: " 09-3-24 / 11:03",
+            text: "Se realizo el cambio en el template",
+          },
         },
         {
           user: "",
-          comment:
-            "8-3-24 / 16:23 hs <br />Se realizo el cambio en la fuentes que generaban conflicto entre comentarios",
+          comment: {
+            date: " 8-3-24 / 16:23",
+            text: "Se realizo el cambio en la fuentes que generaban conflicto entre comentarios",
+          },
         },
         {
           user: "",
-          comment:
-            "  8-3-24 / 13:11 hs <br />Se realizo el cambio en la fuentes que generaban conflicto entre menus",
+          comment: {
+            date: " 8-3-24 / 13:11",
+            text: "Se realizo el cambio en la fuentes que generaban conflicto entre menus",
+          },
         },
       ],
 
       status: {
+        state: "",
         comment: "",
       },
 
-      createdAt: new Date().toUTCString(),
+      createdAt: dayFormater(),
 
       finishDate: "",
     },
@@ -356,26 +388,31 @@ export const taskWithData = {
       changes: [
         {
           user: "",
-          comment:
-            "8-3-24 / 16:23 hs"+  + "Se verifica que la fuente no es nada profesional para dejar informacion sobre los cambios realizados. Se revierte",
+          comment: {
+            date: " 8-3-24 / 16:23",
+            text: "Se verifica que la fuente no es nada profesional para dejar informacion sobre los cambios realizados. Se revierte",
+          },
         },
         {
           user: "",
-          comment:
-            "  8-3-24 / 13:11 hs"+  + "Se realizo el cambio en la fuente por Comic Sans segun lo solicitado",
+          comment: {
+            date: " 8-3-24 / 13:11",
+            text: "Se realizo el cambio en la fuente por Comic Sans segun lo solicitado",
+          },
         },
       ],
 
       status: {
+        state: "",
         comment: "",
       },
 
-      createdAt: new Date().toUTCString(),
+      createdAt: dayFormater(),
 
       finishDate: "",
     },
   ],
-  createdAt: new Date().toUTCString(),
+  createdAt: dayFormater(),
   finishDate: "",
 };
 
@@ -468,44 +505,45 @@ export const subTask = {
     {
       user: "",
       comment:
-        "12-3-24 / 20:03 hs <br /> Se realizo el cambio en el header, ya no tiene puntas redondeadas donde deben ser rectangulares",
+        "12-3-24 / 20:03 hs Se realizo el cambio en el header, ya no tiene puntas redondeadas donde deben ser rectangulares",
     },
     {
       user: "",
       comment:
-        "11-3-24 / 20:03 hs <br /> Se realizo el cambio necesario en el NavBar para que se pueda navegar correctamente",
+        "11-3-24 / 20:03 hs  Se realizo el cambio necesario en el NavBar para que se pueda navegar correctamente",
     },
     {
       user: "",
       comment:
-        " 11-3-24 / 13:11 hs <br /> Se realizo el cambio en la fuentes que generaban conflicto entre menus",
+        " 11-3-24 / 13:11 hs  Se realizo el cambio en la fuentes que generaban conflicto entre menus",
     },
     {
       user: "",
       comment:
-        "09-3-24 / 07:03 hs <br /> Se realizo el cambio en el menu, se pusieron bien las fuentes",
+        "09-3-24 / 07:03 hs  Se realizo el cambio en el menu, se pusieron bien las fuentes",
     },
     {
       user: "",
-      comment: " 09-3-24 / 11:03 hs <br /> Se realizo el cambio en el template",
-    },
-    {
-      user: "",
-      comment:
-        "8-3-24 / 16:23 hs <br />Se realizo el cambio en la fuentes que generaban conflicto entre comentarios",
+      comment: " 09-3-24 / 11:03 hs Se realizo el cambio en el template",
     },
     {
       user: "",
       comment:
-        "  8-3-24 / 13:11 hs <br />Se realizo el cambio en la fuentes que generaban conflicto entre menus",
+        "8-3-24 / 16:23 hs Se realizo el cambio en la fuentes que generaban conflicto entre comentarios",
+    },
+    {
+      user: "",
+      comment:
+        "  8-3-24 / 13:11 hs  Se realizo el cambio en la fuentes que generaban conflicto entre menus",
     },
   ],
 
   status: {
+    state: "",
     comment: "",
   },
 
-  createdAt: new Date().toUTCString(),
+  createdAt: dayFormater(),
 
   finishDate: "",
 };

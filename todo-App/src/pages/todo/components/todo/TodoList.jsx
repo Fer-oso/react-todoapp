@@ -10,7 +10,7 @@ export const TodoList = () => {
 
   return (
     <Container>
-      <Title title={"List of Tasks"} variant="h4" />
+      <Title title={"List of Tasks"} variant="h6" />
       <Divider>To view</Divider>
       <List
         sx={{

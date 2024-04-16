@@ -5,7 +5,6 @@ import {
   RemoveRedEyeOutlined,
 } from "@mui/icons-material";
 import {
-  ButtonGroup,
   IconButton,
   ListItem,
   ListItemButton,
@@ -15,7 +14,7 @@ import {
 import Swal from "sweetalert2";
 import "@sweetalert2/theme-material-ui";
 
-import React from "react";
+import React, { useState } from "react";
 
 import { useSelector } from "react-redux";
 
@@ -25,10 +24,12 @@ import {
   taskSelectedChecked,
   taskSelectedEnabled,
 } from "../../../../store/todos/taskSlice";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ListTasksToView = () => {
-  const { listTasks, taskSelected } = useSelector((state) => state.tasks);
+  const { listTasks } = useSelector((state) => state.tasks);
+
+  const [enabled, setEnabled] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -48,22 +49,24 @@ export const ListTasksToView = () => {
     dispatch(loadTasks(updatedListTasks));
   };
 
-  const onClickAproved = (task) => {
+  const onClickAproved = (task = {}) => {
     Swal.fire({
       title: "Do you want approve the Task?",
-
       showCancelButton: true,
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
 
-        const taskApproved = {
+        const taskAproved = {
           ...task,
+          enabled: false,
           checked: "approved",
         };
 
-        dispatch(taskSelectedChecked(taskApproved));
+        setEnabled(false);
+
+        dispatch(taskSelectedChecked(taskAproved));
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
       }
@@ -77,14 +80,16 @@ export const ListTasksToView = () => {
       showCancelButton: true,
       confirmButtonText: "Yes",
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
 
         const taskDenied = {
           ...task,
+          enabled: false,
           checked: "denied",
         };
+
+        setEnabled(true);
 
         dispatch(taskSelectedChecked(taskDenied));
       } else if (result.isDenied) {
@@ -99,7 +104,7 @@ export const ListTasksToView = () => {
         ? "listItem.approved"
         : task.checked === "denied"
         ? "listItem.denied"
-        : "inherit";
+        : "listItem.default";
     return { bgcolor: color };
   };
 
@@ -109,48 +114,47 @@ export const ListTasksToView = () => {
         <ListItem
           key={index}
           sx={() => colored(task)}
-          secondaryAction={
-            <ButtonGroup variant="text" disableElevation>
-              <IconButton
-                disabled={!task.enabled}
-                edge="end"
-                aria-label="comments"
-                onClick={() => onClickAproved(task)}
-              >
-                <Check />
-              </IconButton>
-
-              <IconButton
-                edge="end"
-                aria-label="comments"
-                disabled={!task.enabled}
-                onClick={() => onClickDenied(task)}
-              >
-                <CancelOutlined />
-              </IconButton>
-
-              <IconButton
-                edge="end"
-                aria-label="comments"
-                disabled={!task.enabled}
-              >
-                <NavLink to={`${task.id}`} >
-                  <RemoveRedEyeOutlined />
-                </NavLink>
-              </IconButton>
-
-              <IconButton
-                edge="end"
-                aria-label="comments"
-                disabled={!task.enabled}
-              >
-                <CommentOutlined />
-              </IconButton>
-            </ButtonGroup>
-          }
+          secondaryAction={<></>}
           disablePadding
+          divider
         >
-          <ListItemButton dense onClick={() => onClickTaskSelected(task)}>
+          <IconButton
+            disabled={!task.enabled}
+            edge="end"
+            aria-label="comments"
+            onClick={() => onClickAproved(task)}
+          >
+            <Check />
+          </IconButton>
+
+          <IconButton
+            edge="end"
+            aria-label="comments"
+            disabled={!task.enabled}
+            onClick={() => onClickDenied(task)}
+          >
+            <CancelOutlined />
+          </IconButton>
+
+          <IconButton
+            edge="end"
+            aria-label="comments"
+            disabled={!task.enabled}
+            color="primary"
+          >
+            <Link to={`tasks/${task.id}`}>
+              <RemoveRedEyeOutlined />
+            </Link>
+          </IconButton>
+
+          <IconButton edge="end" aria-label="comments" disabled={!task.enabled}>
+            <CommentOutlined />
+          </IconButton>
+          <ListItemButton
+            disabled={enabled}
+            dense
+            onClick={() => onClickTaskSelected(task)}
+          >
             <ListItemText primary={task.title} />
           </ListItemButton>
         </ListItem>

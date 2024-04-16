@@ -10,38 +10,43 @@ import {
 } from "@mui/material";
 import React from "react";
 
-import { useSelector } from "react-redux";
+import { NothingSelected } from "./NothingSelected";
 
-export const Comments = () => {
-  const { taskSelected } = useSelector((state) => state.tasks);
+export const Comments = ({task}) => {
 
   return (
     <>
-      {taskSelected.comments.map((comment, index) => (
+      {!!task ? (
         <>
-          <ListSubheader key={index}>
-            <Typography
-              variant="h5"
-              color="black"
-              textAlign="center"
-              gutterBottom
-              fontWeight="fontWeightBold"
-            >
-              {`Week ${comment.week}  - ${comment.date}`}
-            </Typography>
-          </ListSubheader>
-          <>
-            {comment.comment.map((comm, index) => (
-              <ListItem alignItems="flex-start" key={index}>
-                <Alert variant="filled" severity={comm.severity}>
-                  {comm.text}
-                </Alert>
-              </ListItem>
-            ))}
-            <Divider></Divider>
-          </>
+          {task.comments.map((comment, index) => (
+            <>
+              <ListSubheader key={index}>
+                <Typography
+                  variant="h5"
+                  color="black"
+                  textAlign="center"
+                  gutterBottom
+                  fontWeight="fontWeightBold"
+                >
+                  {`Week ${comment.week}  - ${comment.date}`}
+                </Typography>
+              </ListSubheader>
+              <>
+                {comment.comment.map((comm, index) => (
+                  <ListItem alignItems="flex-start" key={index}>
+                    <Alert variant="standard" severity={comm.severity}>
+                      {comm.text}
+                    </Alert>
+                  </ListItem>
+                ))}
+                <Divider></Divider>
+              </>
+            </>
+          ))}
         </>
-      ))}
+      ) : (
+        <NothingSelected/>
+      )}
     </>
   );
 };

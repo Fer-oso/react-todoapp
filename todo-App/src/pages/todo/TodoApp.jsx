@@ -2,21 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { startLogoutUser } from "../../store/auth/authThunk";
 import { TodoLayout } from "./layout/TodoLayout";
-import { Button, Divider, Grid, Paper, Typography, styled } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { TodoInformation } from "./components/TodoInformation";
 import { taskWithData } from "../../data/task";
 
 import { startCreateTask } from "../../store/todos/taskThunk";
 import { TodoList } from "./components/todo/TodoList";
-import { Title } from "./components/Title";
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
 
 export const TodoApp = () => {
   const dispatch = useDispatch();

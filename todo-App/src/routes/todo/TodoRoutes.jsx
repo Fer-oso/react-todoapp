@@ -10,7 +10,7 @@ export const TodoRoutes = () => {
     <NavBar/>
       <Routes>
         <Route path="/todo" element={<TodoApp />} />
-        <Route path="/todo/:id" element={<TaskView />} />
+        <Route path="/todo/tasks/:id" element={<TaskView />} />
         <Route path="/*" element={<Navigate to="/todo" />} />
       </Routes>
     </>

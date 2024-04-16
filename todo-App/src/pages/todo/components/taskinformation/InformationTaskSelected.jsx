@@ -1,35 +1,20 @@
-import { List, ListItem, ListSubheader, Typography } from '@mui/material'
-import React from 'react'
-import { StatusTaskSelected } from './StatusTaskSelected'
+import { List } from "@mui/material";
+import React from "react";
+import { ChangeHistoryComments } from "./ChangeHistoryComments";
 
-export const InformationTaskSelected = ({ taskSelected }) => {
+export const InformationTaskSelected = () => {
   return (
     <List
       sx={{
         overflow: "auto",
-        maxHeight: { xs: 500, md: 550, lg: 720, xl: 830 },
+        position: "relative",
+        maxHeight: { xs: 200, md: 350, lg: 350, xl: 830 },
+        marginTop:2,
+        "& ul": { padding: 0 },
       }}
-      subheader={
-        <ListSubheader sx={{ marginTop: "15px" }}>
-          <Typography
-            variant="body1"
-            color={"black"}
-            fontWeight={"fontWeightBold"}
-          >
-            Description of the task
-          </Typography>
-        </ListSubheader>
-      }
+      subheader={<li />}
     >
-      <ListItem>
-        <Typography variant="body2">
-          {taskSelected.description}
-        </Typography>
-      </ListItem>
-
-      <ListItem>
-        <StatusTaskSelected taskSelected={taskSelected}/>
-      </ListItem>
+      <ChangeHistoryComments/>
     </List>
   );
 };

@@ -8,16 +8,17 @@ import { CommentTaskSelected } from "./components/taskinformation/CommentTaskSel
 export const TaskView = () => {
   return (
     <Grid container marginTop={1} spacing={2}>
-      <Grid item xs={12} md={3}>
+      <Grid item xs={12} md={4}>
         <ListSubTasks />
+        <CommentTaskSelected />
       </Grid>
-      <Grid item xs={12} md={5}>
+
+      <Grid item xs={12} md={4}>
         <TaskInformation />
       </Grid>
 
       <Grid item xs={12} md={4}>
-        <CommentTaskSelected />
-        <TaskComments />
+        <TaskComments/>
       </Grid>
     </Grid>
   );

@@ -7,6 +7,7 @@ export const taskSlice = createSlice({
     listTasks: null,
     taskSelected: null,
     listTasksSelected: null,
+    subtaskSelected: null,
   },
   reducers: {
     noTaskSelectedInitialState: (state, action) => {
@@ -37,6 +38,21 @@ export const taskSlice = createSlice({
         return task;
       });
     },
+
+    subtaskSelected: (state, action) => {
+      state.subtaskSelected = action.payload
+    },
+    subtaskSelectedChecked: (state, action) => {
+      state.subtaskSelected = action.payload;
+
+      state.taskSelected.subTasks = state.taskSelected.subTasks.map((subtask) => {
+        if (subtask.id === action.payload.id) {
+          return action.payload;
+        }
+        return subtask;
+      });
+    },
+
   },
 });
 
@@ -46,4 +62,6 @@ export const {
   loadTasks,
   taskSelectedEnabled,
   taskSelectedChecked,
+  subtaskSelected,
+  subtaskSelectedChecked,
 } = taskSlice.actions;

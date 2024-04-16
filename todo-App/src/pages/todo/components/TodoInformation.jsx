@@ -17,7 +17,7 @@ export const TodoInformation = () => {
           {!!taskSelected ? (
             <>
               <Title
-                variant={"h4"}
+                variant={"h6"}
                 title={`Quick view of ${taskSelected.title}`}
                 textAlign={"center"}
               />
@@ -31,7 +31,7 @@ export const TodoInformation = () => {
                 }}
                 subheader={<li />}
               >
-                <Comments />
+                <Comments task={taskSelected}/>
               </List>
             </>
           ) : (

@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import { green, grey, red } from "@mui/material/colors";
+import { blue, blueGrey, green, grey, orange, red, yellow } from "@mui/material/colors";
 
 export const colorTheme = createTheme({
   palette: {
@@ -11,12 +11,17 @@ export const colorTheme = createTheme({
       main: grey[200],
     },
     error: {
-      main: grey[50],
+      main: red[900],
     },
 
-    listItem:{
+    listItem: {
       approved: green[100],
-      denied: red[100]
-    }
+      denied: red[100],
+      finished:green[200],
+      inProcess:blue[200],
+      pending: yellow[200] ,
+      paused:red[200],
+      default: grey[200]
+    },
   },
 });
