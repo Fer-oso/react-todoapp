@@ -5,6 +5,7 @@ import {
   Box,
   Container,
   IconButton,
+  Link,
   Menu,
   MenuItem,
   Toolbar,
@@ -13,10 +14,10 @@ import {
 } from "@mui/material";
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink as navLink } from "react-router-dom";
 
 export const NavBar = () => {
-  const pages = ["Products", "Pricing", "Blog"];
+  const pages = ["Home", "Pricing", "Blog"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -121,7 +122,7 @@ export const NavBar = () => {
             
           {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Link underline="none" component={navLink} color={"inherit"} to="/todo">Home</Link>
                 </MenuItem>
               ))}
           </Box>

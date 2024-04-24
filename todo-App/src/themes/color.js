@@ -8,7 +8,7 @@ export const colorTheme = createTheme({
       second: grey,
     },
     secondary: {
-      main: grey[200],
+      main: grey[600],
     },
     error: {
       main: red[900],
@@ -21,7 +21,7 @@ export const colorTheme = createTheme({
       inProcess:blue[200],
       pending: yellow[200] ,
       paused:red[200],
-      default: grey[200]
+      default: grey[50]
     },
   },
 });

@@ -8,7 +8,7 @@ export const ChangeHistoryComments = () => {
 
   return (
     <>
-      {!!subtaskSelected ? (
+      {!!subtaskSelected && subtaskSelected.changes > 0 ? (
         <>
           {subtaskSelected.changes.map((change, index) => (
             <ListItem key={index} alignItems="flex-start" disableGutters>
@@ -36,7 +36,7 @@ export const ChangeHistoryComments = () => {
           ))}
         </>
       ) : (
-        <NothingSelected title="Select one subtask of the list 🙄" />
+        <NothingSelected title="No changes" />
       )}
     </>
   );

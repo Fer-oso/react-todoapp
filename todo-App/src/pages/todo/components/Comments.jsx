@@ -1,51 +1,44 @@
 import {
   Alert,
   Divider,
-  List,
   ListItem,
-  ListItemButton,
   ListSubheader,
-  Stack,
   Typography,
 } from "@mui/material";
 import React from "react";
 
 import { NothingSelected } from "./NothingSelected";
+import { useSelector } from "react-redux";
 
-export const Comments = ({task}) => {
+export const Comments = () => {
+  const { subtaskSelected } = useSelector((state) => state.tasks);
 
   return (
     <>
-      {!!task ? (
+      {!!subtaskSelected ? (
         <>
-          {task.comments.map((comment, index) => (
+          {subtaskSelected.comments.map((data, index) => (
             <>
-              <ListSubheader key={index}>
-                <Typography
-                  variant="h5"
-                  color="black"
-                  textAlign="center"
-                  gutterBottom
-                  fontWeight="fontWeightBold"
-                >
-                  {`Week ${comment.week}  - ${comment.date}`}
-                </Typography>
-              </ListSubheader>
-              <>
-                {comment.comment.map((comm, index) => (
-                  <ListItem alignItems="flex-start" key={index}>
-                    <Alert variant="standard" severity={comm.severity}>
-                      {comm.text}
-                    </Alert>
-                  </ListItem>
-                ))}
-                <Divider></Divider>
-              </>
+              <ListItem alignItems="flex-start" key={index}>
+                <Alert variant="standard" severity={data.severity}>
+                  <Typography
+                    variant="body1"
+                    color="black"
+                    textAlign="start"
+                    gutterBottom
+                    fontWeight="fontWeightBold"
+                  > 
+                   Fernando Osorio {data.date}
+                  </Typography>
+                  {data.comment}
+                </Alert>
+              </ListItem>
+              <Divider></Divider>
             </>
           ))}
         </>
       ) : (
-        <NothingSelected/>
+        <NothingSelected title="you not have comments for this task" />
       )}
     </>
   );

@@ -12,8 +12,34 @@ export const generalTask = {
   }, // estado de la tarea  sin tomar - tomada -iniciado - en proceso - pausa - pendiente - finalizado
   subTasks: [{}], // subtareas que se deben realizar para poder finalizar la tarea general
   finishDate: "", // fecha estimada de finalizacion
-  createAt: "",
+  createdAt: dayFormater(),
 };
+
+export const newTaskToFirebase = {
+  title: "", // titulo de la tarea, ejemplo.  Crear vista para vender remeras
+  description: "", //descripcion para saber de que trata la tarea y que debe realizarse
+  omments: [], // los comentarios se van a basar en lo que dejen el/los usuario/s sobre como ve la tarea
+  changes: [], // son comentarios en donde se van dejando los cambios realizados, es para mantenerse informados
+  status: "", // estado de la tarea  sin tomar - tomada -iniciado - en proceso - pausa - pendiente - finalizado
+  finishDate: null, // fecha estimada de finalizacion
+  createdAt: dayFormater(),
+};
+
+export const subtaskToFirebase = {
+  title: "", // titulo de la tarea, ejemplo.  Crear vista para vender remeras
+  description: "", //descripcion para saber de que trata la tarea y que debe realizarse
+  comments: [], // los comentarios se van a basar en lo que dejen el/los usuario/s sobre como ve la tarea
+  changes: [], // son comentarios en donde se van dejando los cambios realizados, es para mantenerse informados
+  status: null, // estado de la tarea  sin tomar - tomada -iniciado - en proceso - pausa - pendiente - finalizado
+  finishDate: null, // fecha estimada de finalizacion
+  createdAt: dayFormater(),
+};
+
+export const comments = {
+  date: dayFormater(),
+  comment:{},
+  severity:"",
+}
 
 export const taskWithData = {
   enabled: false,
@@ -23,7 +49,6 @@ export const taskWithData = {
   description: "",
   comments: [
     {
-      week: "1 ",
       date: " Day 15-3-03-2024",
       comment: [
         {

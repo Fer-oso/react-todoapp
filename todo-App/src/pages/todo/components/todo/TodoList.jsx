@@ -1,4 +1,4 @@
-import { Divider, List,Container } from "@mui/material";
+import { Divider, List, Container } from "@mui/material";
 import React from "react";
 import { Title } from "../Title";
 import { useSelector } from "react-redux";
@@ -12,20 +12,21 @@ export const TodoList = () => {
     <Container>
       <Title title={"List of Tasks"} variant="h6" />
       <Divider>To view</Divider>
-      <List
-        sx={{
-          width: "100%",
-          position: "relative",
-          overflow: "auto",
-          maxHeight: 300,
-        }}
-      >
-        {!!listTasks ? (
+
+      {!!listTasks ? (
+        <List
+          sx={{
+            width: "100%",
+            position: "relative",
+            overflow: "auto",
+            maxHeight: 300,
+          }}
+        >
           <ListTasksToView />
-        ) : (
-          <NothingSelected title="You not have Tasks to check 😎" />
-        )}
-      </List>
+        </List>
+      ) : (
+        <NothingSelected title="You not have Tasks to check 😎" />
+      )}
     </Container>
   );
 };

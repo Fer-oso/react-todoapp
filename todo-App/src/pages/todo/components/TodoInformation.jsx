@@ -26,12 +26,12 @@ export const TodoInformation = () => {
                 sx={{
                   position: "relative",
                   overflow: "auto",
-                  maxHeight: { xs: 500, sm: 300, md: 480, lg: 500, xl: 370 },
+                  maxHeight: { xs: 500, sm: 300, md: 480, lg: 430, xl: 370 },
                   "& ul": { padding: 0 },
                 }}
                 subheader={<li />}
               >
-                <Comments task={taskSelected}/>
+                <Comments comments={taskSelected.comments}/>
               </List>
             </>
           ) : (

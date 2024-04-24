@@ -6,14 +6,11 @@ export const taskSlice = createSlice({
     task: {},
     listTasks: null,
     taskSelected: null,
-    listTasksSelected: null,
+    subtask: null,
+    listSubtasks: [],
     subtaskSelected: null,
   },
   reducers: {
-    noTaskSelectedInitialState: (state, action) => {
-      state.taskSelected = action.payload.taskSelected;
-    },
-
     createTask: (state, action) => {
       state.task = action.payload;
     },
@@ -21,11 +18,11 @@ export const taskSlice = createSlice({
     loadTasks: (state, action) => {
       state.listTasks = action.payload;
       state.task = action.payload.task;
-      state.listTasksSelected = action.payload.listTasksSelected;
     },
 
     taskSelectedEnabled: (state, action) => {
       state.taskSelected = action.payload;
+    
     },
 
     taskSelectedChecked: (state, action) => {
@@ -40,19 +37,35 @@ export const taskSlice = createSlice({
     },
 
     subtaskSelected: (state, action) => {
-      state.subtaskSelected = action.payload
-    },
-    subtaskSelectedChecked: (state, action) => {
       state.subtaskSelected = action.payload;
-
-      state.taskSelected.subTasks = state.taskSelected.subTasks.map((subtask) => {
-        if (subtask.id === action.payload.id) {
-          return action.payload;
-        }
-        return subtask;
-      });
     },
 
+    subtaskSelectedChecked: (state, action) => {
+     
+      state.taskSelected.subtasks = state.taskSelected.subtasks.map(
+        (subtask) => {
+          if (subtask.id === action.payload.id) {
+            return action.payload;
+          }
+          return subtask;
+        }
+      );
+    },
+
+    createSubTask: (state, action) => {
+      state.subtask = action.payload;
+    },
+
+    loadSubtasks: (state, action) => {
+      state.listSubtasks = action.payload;
+    },
+
+    commentInSubtaskSelected: (state, action) => {
+      state.subtaskSelected.comments = [
+        ...state.subtaskSelected.comments,
+        action.payload,
+      ];
+    },
   },
 });
 
@@ -64,4 +77,7 @@ export const {
   taskSelectedChecked,
   subtaskSelected,
   subtaskSelectedChecked,
+  createSubTask,
+  loadSubtasks,
+  commentInSubtaskSelected,
 } = taskSlice.actions;
