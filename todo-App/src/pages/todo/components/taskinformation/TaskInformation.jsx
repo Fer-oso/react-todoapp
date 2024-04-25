@@ -5,39 +5,49 @@ import { useSelector } from "react-redux";
 import { NothingSelected } from "../NothingSelected";
 
 export const TaskInformation = () => {
-
-  const {subtaskSelected} = useSelector(state => state.tasks);
+  const { subtaskSelected, listSubtasks } = useSelector((state) => state.tasks);
 
   return (
     <Container sx={{ marginTop: { xs: "10px", md: "0px", xl: "0px" } }}>
-      {!!subtaskSelected ? (
+      
+      {listSubtasks.length > 0 ? (
         <>
-          <Typography
-            variant="body1"
-            color={"black"}
-            fontWeight={"fontWeightBold"}
-            textAlign={"center"}
-          >
-            Description
-          </Typography>
+          {!!subtaskSelected ? (
+            <>
+              <Typography
+                variant="body1"
+                color={"black"}
+                fontWeight={"fontWeightBold"}
+                textAlign={"center"}
+              >
+                Description
+              </Typography>
 
-          <Typography variant="body2">
-           {subtaskSelected.description}
-          </Typography>
+              <Typography variant="body2">
+                {subtaskSelected.description}
+              </Typography>
 
-          <Typography
-            marginTop={2}
-            variant="body1"
-            color={"black"}
-            fontWeight={"fontWeightBold"}
-          >
-            Changes history
-          </Typography>
+              <Typography
+                marginTop={2}
+                variant="body1"
+                color={"black"}
+                fontWeight={"fontWeightBold"}
+              >
+                Changes history
+              </Typography>
 
-          <InformationTaskSelected />
+              <InformationTaskSelected />
+            </>
+          ) : (
+            <>
+              <NothingSelected title="Select one subtask" />
+            </>
+          )}
         </>
       ) : (
-        <><NothingSelected title="You not have subtasks"/></>
+        <>
+          <NothingSelected title="You not have Subtasks, create one" />
+        </>
       )}
     </Container>
   );
