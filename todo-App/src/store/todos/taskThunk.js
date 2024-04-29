@@ -111,9 +111,9 @@ export const startSetChangeInSubTask = (changes) => {
 
     const {uid} = getState().authentication.userAuthenticated;
 
-    const {taskSelected,subTaskSelected} = getState().tasks;
+    const {taskSelected,subtaskSelected} = getState().tasks;
 
-    await createChangeinSubtask(uid,taskSelected.id,subTaskSelected.id,changes);
+    await createChangeinSubtask(uid,taskSelected.id,subtaskSelected.id,changes);
 
     dispatch(startLoadSubtasks());
 

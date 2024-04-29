@@ -10,7 +10,7 @@ export const ChangesHistory = () => {
   
   return (
     <>
-      {subtaskSelected.changes > 0 ? (
+      {subtaskSelected.changes.length > 0 ? (
         <List
           sx={{
             overflow: "auto",

@@ -1,7 +1,6 @@
 import { Avatar, ListItem, ListItemAvatar, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import { NothingSelected } from "../NothingSelected";
 
 export const ChangeHistoryComments = () => {
   const { subtaskSelected } = useSelector((state) => state.tasks);
@@ -24,10 +23,10 @@ export const ChangeHistoryComments = () => {
                 component={"u"}
                 fontWeight={"fontWeightBold"}
               >
-                {subtaskSelected.createdAt}
+                {change.date}
               </Typography>
               <br></br>
-              {change.comment.text}
+              {change.text}
             </Typography>
           </Typography>
         </ListItem>

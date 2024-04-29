@@ -29,7 +29,7 @@ export const TaskComments = () => {
               <Comments subtaskSelected={subtaskSelected} />
             </List>
           ) : (
-            <NothingSelected title="you not have comments for this task" />
+            <NothingSelected title="Select one subtask to view comments" />
           )}
         </>
       </Grid>

@@ -106,9 +106,8 @@ export const ListSubTasks = () => {
           >
             <>
               {listSubtasks.map((subtask, index) => (
-                <>
+                <div key={index}>
                   <ListItem
-                    key={subtask.id}
                     sx={() => colored(subtask)}
                     secondaryAction={
                       <IconButton
@@ -194,7 +193,7 @@ export const ListSubTasks = () => {
                       </Typography>
                     </ListItemButton>
                   </Collapse>
-                </>
+                </div>
               ))}
             </>
           </List>

@@ -1,4 +1,4 @@
-import { doc, updateDoc } from "firebase/firestore/lite";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore/lite";
 import { firebaseStore } from "../../config/config";
 
 
