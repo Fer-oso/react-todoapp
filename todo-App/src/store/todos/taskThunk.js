@@ -4,6 +4,7 @@ import { createTaskData } from "../../provider/firebase/functions/todos/createTa
 import { loadListSubtasksData } from "../../provider/firebase/functions/todos/loadSubtasks";
 import { loadListTasksData } from "../../provider/firebase/functions/todos/loadTasks";
 import {
+  changeInSubtaskSelected,
   commentInSubtaskSelected,
   createSubTask,
   createTask,
@@ -17,6 +18,7 @@ import {
 import { editTaskData } from "../../provider/firebase/functions/todos/editTask";
 import { editSubtaskData } from "../../provider/firebase/functions/todos/editSubtask";
 import { createCommentInSubtask } from "../../provider/firebase/functions/todos/createComment";
+import { createChangeinSubtask } from "../../provider/firebase/functions/todos/createChange";
 
 export const startCreateTask = (task) => {
   return async (dispatch, getState) => {
@@ -103,17 +105,36 @@ export const startSetStatusInSubtask = (taskSelectedId, subTaskSelected) => {
   };
 };
 
+export const startSetChangeInSubTask = (changes) => {
+  return async (dispatch, getState) => {
+    dispatch( changeInSubtaskSelected(changes));
+
+    const {uid} = getState().authentication.userAuthenticated;
+
+    const {taskSelected,subTaskSelected} = getState().tasks;
+
+    await createChangeinSubtask(uid,taskSelected.id,subTaskSelected.id,changes);
+
+    dispatch(startLoadSubtasks());
+
+  };
+};
+
 export const startSetCommentInSubTask = (comments) => {
   return async (dispatch, getState) => {
     dispatch(commentInSubtaskSelected(comments));
 
     const { uid } = getState().authentication.userAuthenticated;
 
-    const { taskSelected, subtaskSelected} = getState().tasks;
+    const { taskSelected, subtaskSelected } = getState().tasks;
 
-    await createCommentInSubtask(uid, taskSelected.id, subtaskSelected.id,comments);
+    await createCommentInSubtask(
+      uid,
+      taskSelected.id,
+      subtaskSelected.id,
+      comments
+    );
 
     dispatch(startLoadSubtasks());
-
   };
 };

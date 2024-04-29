@@ -9,17 +9,34 @@ import {
 import React from "react";
 import { Title } from "../Title";
 import { useForm } from "../../../hooks/useForm";
-import { comments } from "../../../../data/task";
+import { comments, generalForm } from "../../../../data/task";
 import { useDispatch } from "react-redux";
-import { startSetCommentInSubTask } from "../../../../store/todos/taskThunk";
+import { startSetChangeInSubTask, startSetCommentInSubTask } from "../../../../store/todos/taskThunk";
 import Swal from "sweetalert2";
 
 export const CommentTaskSelected = () => {
-  const { formState, onInputChange } = useForm(comments);
+  const { formState, onInputChange } = useForm(generalForm);
 
   const dispatch = useDispatch();
 
-  const onclickChangesButton = () => {};
+  const onclickChangesButton = () => {
+
+   Swal.fire({
+     title: "Do you want to save the changes?",
+     showDenyButton: true,
+     showCancelButton: true,
+     confirmButtonText: "Save",
+     denyButtonText: `Don't save`,
+   }).then((result) => {
+     /* Read more about isConfirmed, isDenied below */
+     if (result.isConfirmed) {
+       Swal.fire("Saved!", "", "success");
+      console.log(formState)
+     } else if (result.isDenied) {
+       Swal.fire("Changes are not saved", "", "info");
+     }
+   });
+  };
 
   const onclickCommentButton = () => {
 
@@ -63,7 +80,7 @@ export const CommentTaskSelected = () => {
                 fullWidth
                 placeholder="Write your changes / comments"
                 size="small"
-                name="comment"
+                name="text"
                 onChange={onInputChange}
               />
             </Grid>

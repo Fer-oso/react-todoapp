@@ -22,7 +22,6 @@ export const taskSlice = createSlice({
 
     taskSelectedEnabled: (state, action) => {
       state.taskSelected = action.payload;
-    
     },
 
     taskSelectedChecked: (state, action) => {
@@ -41,7 +40,6 @@ export const taskSlice = createSlice({
     },
 
     subtaskSelectedChecked: (state, action) => {
-     
       state.taskSelected.subtasks = state.taskSelected.subtasks.map(
         (subtask) => {
           if (subtask.id === action.payload.id) {
@@ -58,6 +56,13 @@ export const taskSlice = createSlice({
 
     loadSubtasks: (state, action) => {
       state.listSubtasks = action.payload;
+    },
+
+    changeInSubtaskSelected: (state, action) => {
+      state.subtaskSelected.changes = [
+        ...state.subtaskSelected.changes,
+        action.payload,
+      ];
     },
 
     commentInSubtaskSelected: (state, action) => {
@@ -79,5 +84,6 @@ export const {
   subtaskSelectedChecked,
   createSubTask,
   loadSubtasks,
+  changeInSubtaskSelected,
   commentInSubtaskSelected,
 } = taskSlice.actions;

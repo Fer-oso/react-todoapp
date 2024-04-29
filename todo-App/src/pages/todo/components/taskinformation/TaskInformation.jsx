@@ -1,6 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import React from "react";
-import { InformationTaskSelected } from "./InformationTaskSelected";
+import { ChangesHistory } from "./ChangesHistory";
 import { useSelector } from "react-redux";
 import { NothingSelected } from "../NothingSelected";
 
@@ -9,7 +9,6 @@ export const TaskInformation = () => {
 
   return (
     <Container sx={{ marginTop: { xs: "10px", md: "0px", xl: "0px" } }}>
-      
       {listSubtasks.length > 0 ? (
         <>
           {!!subtaskSelected ? (
@@ -36,7 +35,7 @@ export const TaskInformation = () => {
                 Changes history
               </Typography>
 
-              <InformationTaskSelected />
+              <ChangesHistory  />
             </>
           ) : (
             <>

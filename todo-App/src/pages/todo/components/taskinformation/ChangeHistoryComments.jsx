@@ -8,36 +8,30 @@ export const ChangeHistoryComments = () => {
 
   return (
     <>
-      {!!subtaskSelected && subtaskSelected.changes > 0 ? (
-        <>
-          {subtaskSelected.changes.map((change, index) => (
-            <ListItem key={index} alignItems="flex-start" disableGutters>
-              <ListItemAvatar>
-                <Avatar
-                  alt="profile-image"
-                  src="../../../img/profiles/profile-man.jpg"
-                />
-              </ListItemAvatar>
-              <Typography variant="body2" fontWeight={"fontWeightBold"}>
-                Fernando Osorio{" "}
-                <Typography variant="body2" component={"em"}>
-                  <Typography
-                    variant="body2"
-                    component={"u"}
-                    fontWeight={"fontWeightBold"}
-                  >
-                    {subtaskSelected.createdAt}
-                  </Typography>
-                  <br></br>
-                  {change.comment.text}
-                </Typography>
+      {subtaskSelected.changes.map((change, index) => (
+        <ListItem key={index} alignItems="flex-start" disableGutters>
+          <ListItemAvatar>
+            <Avatar
+              alt="profile-image"
+              src="../../../img/profiles/profile-man.jpg"
+            />
+          </ListItemAvatar>
+          <Typography variant="body2" fontWeight={"fontWeightBold"}>
+            Fernando Osorio{" "}
+            <Typography variant="body2" component={"em"}>
+              <Typography
+                variant="body2"
+                component={"u"}
+                fontWeight={"fontWeightBold"}
+              >
+                {subtaskSelected.createdAt}
               </Typography>
-            </ListItem>
-          ))}
-        </>
-      ) : (
-        <NothingSelected title="No changes" />
-      )}
+              <br></br>
+              {change.comment.text}
+            </Typography>
+          </Typography>
+        </ListItem>
+      ))}
     </>
   );
 };

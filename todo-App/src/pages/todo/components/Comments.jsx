@@ -1,45 +1,28 @@
-import {
-  Alert,
-  Divider,
-  ListItem,
-  ListSubheader,
-  Typography,
-} from "@mui/material";
+import { Alert, Divider, ListItem, Typography } from "@mui/material";
 import React from "react";
 
-import { NothingSelected } from "./NothingSelected";
-import { useSelector } from "react-redux";
-
-export const Comments = () => {
-  const { subtaskSelected } = useSelector((state) => state.tasks);
-
+export const Comments = ({ subtaskSelected }) => {
   return (
     <>
-      {!!subtaskSelected ? (
-        <>
-          {subtaskSelected.comments.map((data, index) => (
-            <>
-              <ListItem alignItems="flex-start" key={index}>
-                <Alert variant="standard" severity={data.severity}>
-                  <Typography
-                    variant="body1"
-                    color="black"
-                    textAlign="start"
-                    gutterBottom
-                    fontWeight="fontWeightBold"
-                  > 
-                   Fernando Osorio {data.date}
-                  </Typography>
-                  {data.comment}
-                </Alert>
-              </ListItem>
-              <Divider></Divider>
-            </>
-          ))}
-        </>
-      ) : (
-        <NothingSelected title="you not have comments for this task" />
-      )}
+      {subtaskSelected.comments.map((data, index) => (
+        <div key={index}>
+          <ListItem alignItems="flex-start">
+            <Alert variant="standard" severity={data.severity} key={data.date}>
+              <Typography
+                variant="body1"
+                color="black"
+                textAlign="start"
+                gutterBottom
+                fontWeight="fontWeightBold"
+              >
+                Fernando Osorio {data.date}
+              </Typography>
+              {data.text}
+            </Alert>
+          </ListItem>
+          <Divider></Divider>
+        </div>
+      ))}
     </>
   );
 };

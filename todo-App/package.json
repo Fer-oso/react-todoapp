@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.14",
     "@reduxjs/toolkit": "^2.2.2",
     "@sweetalert2/theme-material-ui": "^5.0.16",
+    "@sweetalert2/themes": "^5.0.16",
     "firebase": "^10.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

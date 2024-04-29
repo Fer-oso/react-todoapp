@@ -31,7 +31,7 @@ export const TodoInformation = () => {
                 }}
                 subheader={<li />}
               >
-                <Comments comments={taskSelected.comments}/>
+              {/*<Comments comments={taskSelected.comments}/>*/}
               </List>
             </>
           ) : (
