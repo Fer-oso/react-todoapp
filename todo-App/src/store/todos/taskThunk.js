@@ -53,6 +53,7 @@ export const startSetTaskSelected = (taskSelected) => {
     const getTaskSelected = { ...taskSelected, subtasks: listSubtasks };
 
     dispatch(taskSelectedEnabled(getTaskSelected));
+    
     dispatch(startLoadSubtasks());
   };
 };

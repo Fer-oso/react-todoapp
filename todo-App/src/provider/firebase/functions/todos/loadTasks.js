@@ -13,7 +13,7 @@ export const loadListTasksData = async (uid) => {
     listTask.push({
       ...data.data(),
       id: data.id,
-      subtasks: "just load on demand"
+     
     });
   });
 

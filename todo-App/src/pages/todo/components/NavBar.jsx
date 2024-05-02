@@ -17,7 +17,7 @@ import React from "react";
 import { NavLink as navLink } from "react-router-dom";
 
 export const NavBar = () => {
-  const pages = ["Home", "Pricing", "Blog"];
+  const pages = ["Todo", "Pricing", "Blog"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -39,23 +39,19 @@ export const NavBar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{marginBottom: "4px" }}>
+    <AppBar position="static" sx={{ marginBottom: "5px", height: "40px" }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters variant="dense">
           <AdbOutlined sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
-              mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: ".1rem",
               color: "inherit",
-              textDecoration: "none",
             }}
           >
             Logo
@@ -63,12 +59,11 @@ export const NavBar = () => {
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
+              size="small"
               onClick={handleOpenNavMenu}
               color="inherit"
+              sx={{ marginTop: "-5px" }}
+              edge="start"
             >
               <MenuIcon />
             </IconButton>
@@ -99,38 +94,48 @@ export const NavBar = () => {
             </Menu>
           </Box>
 
-          <AdbOutlined sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <AdbOutlined sx={{ display: { xs: "flex", md: "none" }, mt: -1 }} />
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
-              mr: 2,
+              mt: -1,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: ".1rem",
               color: "inherit",
-              textDecoration: "none",
             }}
           >
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            
-          {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Link underline="none" component={navLink} color={"inherit"} to="/todo">Home</Link>
-                </MenuItem>
-              ))}
+            {pages.map((page) => (
+              <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <Link
+                  underline="none"
+                  component={navLink}
+                  color={"inherit"}
+                  to={`${page}`}
+                >
+                  {page}
+                </Link>
+              </MenuItem>
+            ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0, marginTop: "-10px" }}
+              >
+                <Avatar
+                  alt="Fernando Osorio"
+                  src="/static/images/avatar/2.jpg"
+                  sx={{ width: 35, height: 35 }}
+                />
               </IconButton>
             </Tooltip>
             <Menu

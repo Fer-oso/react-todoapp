@@ -9,6 +9,7 @@ export const Title = ({ title = "", variant = "h5", textAlign="center" }) => {
       color="black"
       fontWeight="fontWeightBold"
       textAlign={textAlign}
+      fontFamily={"Open Sans"}
     >
       {title}
     </Typography>

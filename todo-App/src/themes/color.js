@@ -1,11 +1,13 @@
 import { createTheme } from "@mui/material";
-import { blue, blueGrey, green, grey, orange, red, yellow } from "@mui/material/colors";
+import { blue, green, grey, red, yellow } from "@mui/material/colors";
+import '@fontsource-variable/open-sans';
 
 export const colorTheme = createTheme({
   palette: {
     primary: {
-      main: grey[100],
-      second: grey,
+      light: '#757ce8',
+      main: grey[50],
+      second: green[50],
     },
     secondary: {
       main: grey[600],
@@ -23,5 +25,20 @@ export const colorTheme = createTheme({
       paused:red[200],
       default: grey[50]
     },
+  },
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+      '"Open Sans"'
+    ].join(','),
   },
 });
