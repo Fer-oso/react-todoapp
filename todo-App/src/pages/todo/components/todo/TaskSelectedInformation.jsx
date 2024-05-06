@@ -12,19 +12,19 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 
-import { Title } from "./Title";
-import { NothingSelected } from "./NothingSelected";
+import { Title } from "../Title";
+import { NothingSelected } from "../NothingSelected";
 
 import { NavLink as navLink } from "react-router-dom";
 import {
   RemoveRedEye
 } from "@mui/icons-material";
 
-export const TodoInformation = () => {
+export const TaskSelectedInformation = () => {
   const { listTasks, taskSelected } = useSelector((state) => state.tasks);
 
   return (
-    <Container sx={{ borderRight: " 2px solid #D2D1D1", marginTop: 1 }}>
+    <Container sx={{ borderRight: " 2px solid #F1F1F1", marginTop: 1 }}>
       {!!listTasks ? (
         <>
           {!!taskSelected ? (
@@ -53,7 +53,7 @@ export const TodoInformation = () => {
                 disableElevation
                 size="small"
                 endIcon={<RemoveRedEye color="#040404" />}
-                sx={{ bgcolor: '#E4F8FF', color: '#040404'}}
+                sx={{ bgcolor: "#E4F8FF", color: "#040404" }}
               >
                 <Link
                   component={navLink}

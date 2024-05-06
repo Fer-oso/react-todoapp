@@ -1,18 +1,12 @@
 import React from "react";
 import {
   CancelOutlined,
-  Check,
-  CommentOutlined,
-  RemoveRedEyeOutlined,
+  Check
 } from "@mui/icons-material";
 import {
-  IconButton,
-  Link,
-  List,
-  ListItem,
+  IconButton, ListItem,
   ListItemButton,
-  ListItemText,
-  Typography,
+  ListItemText
 } from "@mui/material";
 
 import Swal from "sweetalert2";
@@ -20,11 +14,9 @@ import "@sweetalert2/theme-material-ui";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  loadTasks,
-  taskSelectedEnabled,
+  loadTasks
 } from "../../../../store/todos/taskSlice";
 
-import { NavLink as navLink } from "react-router-dom";
 import {
   startSetStatusIntask,
   startSetTaskSelected,
@@ -134,49 +126,3 @@ export const ListTasksToView = () => {
     </>
   );
 };
-{
-  /*  <ListItemButton
-            key={index}
-            sx={{ bgcolor: colored(task) }}
-            alignItems="flex-start"
-            divider
-            disableGutters
-            onClick={() => onClickTaskSelected(task)}
-          >
-            <ListItemText sx={{ marginLeft: "7px" }}>{task.title}</ListItemText>
-           
-
-            <IconButton
-              edge="end"
-              aria-label="comments"
-              onClick={() => onClickChecked(task, "denied")}
-              disabled={!task.enabled}
-              size="small"
-            >
-              <CancelOutlined />
-            </IconButton>
-
-            <IconButton
-              edge="end"
-              aria-label="comments"
-              color="primary"
-              disabled={!task.enabled}
-              size="small"
-            >
-              <Link component={navLink} to={`tasks/${task.id}`}>
-                <RemoveRedEyeOutlined
-                  sx={{ bgcolor: "white", color: "secondary.main" }}
-                />
-              </Link>
-            </IconButton>
-
-            <IconButton
-              edge="end"
-              aria-label="comments"
-              disabled={!task.enabled}
-              size="small"
-            >
-              <CommentOutlined />
-            </IconButton>
-      </ListItemButton> */
-}

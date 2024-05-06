@@ -16,30 +16,35 @@ import { NothingSelected } from "../NothingSelected";
 import { MenuOutlined } from "@mui/icons-material";
 import { useChecked } from "../../../hooks/useChecked";
 
-export const TodoList = () => {
+export const ToViewTasksList = () => {
   const { listTasks } = useSelector((state) => state.tasks);
 
   const { open, handleToggle } = useChecked();
 
   const calendary = ["Today", "Tomorrow", "Yesterday", "Next Week"];
   return (
-    <Container sx={{ borderRight:" 2px solid #D2D1D1", marginTop:1}}>
-      
+    <Container sx={{ borderRight: " 2px solid #F1F1F1", marginTop: 1 }}>
       <Divider>
-        <Typography variant="subtitle2" fontFamily={"Open Sans"} fontWeight={"fontWeightBold"}>
+        <Typography
+          variant="subtitle2"
+          fontFamily={"Open Sans"}
+          fontWeight={"fontWeightBold"}
+        >
           To view
         </Typography>
       </Divider>
 
       {!!listTasks ? (
-        <List dense disablePadding sx={{marginTop:1}}>
+        <List dense disablePadding sx={{ marginTop: 1 }}>
           {calendary.map((day, index) => (
             <Box key={index}>
               <ListItem
                 disableGutters
                 disablePadding
                 secondaryAction={
-                  <ListItemIcon sx={{fontSize:'13px', fontWeight:'fontWeightBold'}}>
+                  <ListItemIcon
+                    sx={{ fontSize: "13px", fontWeight: "fontWeightBold" }}
+                  >
                     {listTasks.length}
                   </ListItemIcon>
                 }
@@ -48,7 +53,7 @@ export const TodoList = () => {
                   <IconButton size="small" onClick={handleToggle(day, index)}>
                     <MenuOutlined />
                   </IconButton>
-                  <Typography variant="subtitle2" fontFamily={"Segoe UI"} >
+                  <Typography variant="subtitle2" fontFamily={"Segoe UI"}>
                     {day}
                   </Typography>
                 </ListItemButton>
@@ -60,9 +65,6 @@ export const TodoList = () => {
             </Box>
           ))}
         </List>
-        
-
-        
       ) : (
         <NothingSelected title="You not have Tasks to check 😎" />
       )}

@@ -5,7 +5,7 @@ export const useChecked = () => {
 
   const [checked, setChecked] = useState([1]);
 
-  const handleToggle = (value={}, index) => () => {
+  const handleToggle = (value={}, index=0) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 

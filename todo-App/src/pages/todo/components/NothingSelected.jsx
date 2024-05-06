@@ -1,4 +1,4 @@
-import { StarOutline } from "@mui/icons-material";
+import { StarOutline, Task, TaskAltOutlined, TaskAltTwoTone, TaskOutlined } from "@mui/icons-material";
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 
@@ -13,7 +13,7 @@ export const NothingSelected = ({title = ""}) => {
         alignContent="center"
       >
         <Grid margin="auto">
-          <StarOutline sx={{ fontSize: 50, color: "black"}} />
+          <TaskOutlined sx={{ fontSize: 20, color: "grey"}} />
         </Grid>
         <Grid>
          

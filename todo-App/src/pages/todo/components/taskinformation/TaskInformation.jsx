@@ -1,14 +1,19 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Divider, Typography } from "@mui/material";
 import React from "react";
 import { ChangesHistory } from "./ChangesHistory";
 import { useSelector } from "react-redux";
 import { NothingSelected } from "../NothingSelected";
+import { Title } from "../Title";
 
 export const TaskInformation = () => {
   const { subtaskSelected, listSubtasks } = useSelector((state) => state.tasks);
 
   return (
-    <Container sx={{ marginTop: { xs: "10px", md: "0px", xl: "0px" } }}>
+    <Container sx={{ borderRight: " 2px solid #F1F1F1", marginTop: 1 }}>
+      <Divider>
+        <Title title={"Task changes"} variant="subtitle2" />
+      </Divider>
+
       {listSubtasks.length > 0 ? (
         <>
           {!!subtaskSelected ? (
@@ -35,7 +40,7 @@ export const TaskInformation = () => {
                 Changes history
               </Typography>
 
-              <ChangesHistory  />
+              <ChangesHistory />
             </>
           ) : (
             <>
