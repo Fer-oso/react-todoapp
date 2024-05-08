@@ -5,8 +5,10 @@ import { TodoLayout } from "./layout/TodoLayout";
 
 import { CreateTask } from "./components/CreateTask";
 import { ToViewTasksList } from "./components/todo/ToViewTasksList";
-import { PendingTasksList } from "./components/todo/PendingTasksList";
+
 import { QuickViewInformation } from "./components/todo/QuickViewInformation";
+import { RefusedTasksList } from "./components/todo/RefusedTasksList";
+import { ApprovedTasksList } from "./components/todo/ApprovedTasksList";
 
 export const TodoApp = () => {
   return (
@@ -16,7 +18,8 @@ export const TodoApp = () => {
       <Grid container>
         <Grid item xs={12} md={2} xl={4}>
           <ToViewTasksList />
-          <PendingTasksList />
+          <ApprovedTasksList />
+          <RefusedTasksList />
         </Grid>
 
         <Grid item xs={12} md={4} xl={4}>
@@ -24,9 +27,7 @@ export const TodoApp = () => {
         </Grid>
 
         <Grid item xs={12} md={6} xl={4}>
-          <QuickViewInformation/>
-          {/*  <PendingList />
-           */}{" "}
+          <QuickViewInformation />
         </Grid>
       </Grid>
     </TodoLayout>

@@ -11,21 +11,22 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import { ListTasksToView } from "./ListTasksToView";
 import { NothingSelected } from "../NothingSelected";
 import {
   AssignmentLateOutlined,
   ExpandLess,
   ExpandMore,
+  ThumbDownAltOutlined,
 } from "@mui/icons-material";
 import { useChecked } from "../../../hooks/useChecked";
+import { ListTasksRefused } from "./ListTasksRefused";
 
-export const ToViewTasksList = () => {
+export const RefusedTasksList = () => {
   const { listTasks } = useSelector((state) => state.tasks);
 
   const { open, handleToggle } = useChecked();
 
-  const calendary = ["To take"];
+  const calendary = ["Tasks"];
 
   return (
     <Container sx={{ borderRight: " 2px solid #F1F1F1", marginTop: 1 }}>
@@ -35,7 +36,7 @@ export const ToViewTasksList = () => {
           fontFamily={"Open Sans"}
           fontWeight={"fontWeightBold"}
         >
-          To view
+          Refused
         </Typography>
       </Divider>
 
@@ -61,15 +62,18 @@ export const ToViewTasksList = () => {
                         fontWeight: "fontWeightBold",
                       }}
                     >
-                      {listTasks.filter((task) => task.status === "").length}
+                      {
+                        listTasks.filter((task) => task.status === "refused")
+                          .length
+                      }
                     </Typography>
                     {open[index] ? <ExpandLess /> : <ExpandMore />}
                   </IconButton>
                 }
               >
                 <ListItemButton disableGutters>
-                  <AssignmentLateOutlined
-                    sx={{ fontSize: 25, color: "grey" }}
+                  <ThumbDownAltOutlined
+                    sx={{ fontSize: 25, color: "red" }}
                   />
                   <Typography variant="subtitle2" marginLeft={2}>
                     {day}
@@ -78,7 +82,7 @@ export const ToViewTasksList = () => {
               </ListItem>
 
               <Collapse in={open[index]} timeout="auto" unmountOnExit>
-                <ListTasksToView />
+                <ListTasksRefused />
               </Collapse>
             </Box>
           ))}

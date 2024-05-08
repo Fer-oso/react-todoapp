@@ -14,7 +14,7 @@ export const TaskInformation = () => {
         <Title title={"Task changes"} variant="subtitle2" />
       </Divider>
 
-      {listSubtasks.length > 0 ? (
+      {!!listSubtasks && listSubtasks.length > 0 ? (
         <>
           {!!subtaskSelected ? (
             <>
@@ -26,7 +26,7 @@ export const TaskInformation = () => {
               >
                 Description
               </Typography>
-
+              
               <Typography variant="body2">
                 {subtaskSelected.description}
               </Typography>

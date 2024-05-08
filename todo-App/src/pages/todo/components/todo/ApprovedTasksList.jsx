@@ -7,25 +7,27 @@ import {
   Collapse,
   Typography,
   Box,
-  ListItem,
+  ListItem
 } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
-import { ListTasksToView } from "./ListTasksToView";
 import { NothingSelected } from "../NothingSelected";
 import {
-  AssignmentLateOutlined,
   ExpandLess,
-  ExpandMore,
+  ExpandMore, TaskOutlined,
+  ThumbUpAltOutlined,
+  ThumbUpOutlined
 } from "@mui/icons-material";
 import { useChecked } from "../../../hooks/useChecked";
+import { ListTasksApproved } from "./ListTasksApproved";
 
-export const ToViewTasksList = () => {
+
+export const ApprovedTasksList = () => {
   const { listTasks } = useSelector((state) => state.tasks);
 
   const { open, handleToggle } = useChecked();
 
-  const calendary = ["To take"];
+  const calendary = ["Tasks"];
 
   return (
     <Container sx={{ borderRight: " 2px solid #F1F1F1", marginTop: 1 }}>
@@ -35,7 +37,7 @@ export const ToViewTasksList = () => {
           fontFamily={"Open Sans"}
           fontWeight={"fontWeightBold"}
         >
-          To view
+          Approved
         </Typography>
       </Divider>
 
@@ -61,16 +63,17 @@ export const ToViewTasksList = () => {
                         fontWeight: "fontWeightBold",
                       }}
                     >
-                      {listTasks.filter((task) => task.status === "").length}
+                      {
+                        listTasks.filter((task) => task.status === "approved")
+                          .length
+                      }
                     </Typography>
                     {open[index] ? <ExpandLess /> : <ExpandMore />}
                   </IconButton>
                 }
               >
                 <ListItemButton disableGutters>
-                  <AssignmentLateOutlined
-                    sx={{ fontSize: 25, color: "grey" }}
-                  />
+                  <ThumbUpOutlined sx={{ fontSize: 25, color: 'green' }} />
                   <Typography variant="subtitle2" marginLeft={2}>
                     {day}
                   </Typography>
@@ -78,7 +81,7 @@ export const ToViewTasksList = () => {
               </ListItem>
 
               <Collapse in={open[index]} timeout="auto" unmountOnExit>
-                <ListTasksToView />
+                <ListTasksApproved />
               </Collapse>
             </Box>
           ))}

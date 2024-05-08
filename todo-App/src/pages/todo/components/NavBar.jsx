@@ -17,7 +17,7 @@ import React from "react";
 import { NavLink as navLink } from "react-router-dom";
 
 export const NavBar = () => {
-  const pages = ["Todo", "Pricing", "Blog"];
+  const pages = ["Todo"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);

@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-  ListItem,
-  ListItemButton,
-  ListItemText
-} from "@mui/material";
+import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 import Swal from "sweetalert2";
 import "@sweetalert2/theme-material-ui";
@@ -19,7 +15,7 @@ import {
 import { colored } from "../../../utils/colors";
 import { Status } from "../Status";
 
-export const ListTasksToView = () => {
+export const ListTasksApproved = () => {
   const { listTasks } = useSelector((state) => state.tasks);
 
   const dispatch = useDispatch();
@@ -59,7 +55,7 @@ export const ListTasksToView = () => {
   return (
     <>
       {listTasks
-        .filter((task) => task.status === "")
+        .filter((task) => task.status === "approved")
         .map((task, index) => (
           <ListItem
             disableGutters

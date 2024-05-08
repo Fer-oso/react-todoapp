@@ -18,7 +18,7 @@ export const colorTheme = createTheme({
 
     listItem: {
       approved: green[100],
-      denied: red[100],
+      refused: red[100],
       finished:green[200],
       inProcess:blue[200],
       pending: yellow[200] ,

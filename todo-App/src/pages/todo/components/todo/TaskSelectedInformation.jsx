@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import React from "react";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Title } from "../Title";
 import { NothingSelected } from "../NothingSelected";
@@ -19,9 +19,13 @@ import { NavLink as navLink } from "react-router-dom";
 import {
   RemoveRedEye
 } from "@mui/icons-material";
+import { subtaskSelected } from "../../../../store/todos/taskSlice";
 
 export const TaskSelectedInformation = () => {
+  
   const { listTasks, taskSelected } = useSelector((state) => state.tasks);
+
+  const dispatch = useDispatch();
 
   return (
     <Container sx={{ borderRight: " 2px solid #F1F1F1", marginTop: 1 }}>
@@ -52,7 +56,7 @@ export const TaskSelectedInformation = () => {
                 variant="outlined"
                 disableElevation
                 size="small"
-                endIcon={<RemoveRedEye color="#040404" />}
+                endIcon={<RemoveRedEye sx={{color:"grey"}} />}
                 sx={{ bgcolor: "#E4F8FF", color: "#040404" }}
               >
                 <Link
@@ -85,7 +89,7 @@ export const TaskSelectedInformation = () => {
                         alignItems="flex-start"
                         key={index}
                       >
-                        <ListItemButton key={index} disableGutters>
+                        <ListItemButton key={index} disableGutters  onClick={() => dispatch(subtaskSelected(subtask))}>
                           <Checkbox edge="start" color="success" size="small" />
                           <Typography fontSize={14} variant="caption">
                             {subtask.title}

@@ -18,6 +18,10 @@ export const taskSlice = createSlice({
     loadTasks: (state, action) => {
       state.listTasks = action.payload;
       state.task = action.payload.task;
+      state.taskSelected = action.payload.taskSelected;
+      state.subtask = action.payload.subtask;
+      state.listSubtasks = action.payload.listSubtasks;
+      state.subtaskSelected = action.payload.subtaskSelected;
     },
 
     taskSelectedEnabled: (state, action) => {
