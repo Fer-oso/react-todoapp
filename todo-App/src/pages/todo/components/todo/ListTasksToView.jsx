@@ -1,39 +1,26 @@
 import React from "react";
 
-import {
-  ListItem,
-  ListItemButton,
-  ListItemText
-} from "@mui/material";
+import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 import Swal from "sweetalert2";
 import "@sweetalert2/theme-material-ui";
 
 import { useDispatch, useSelector } from "react-redux";
-import { loadTasks } from "../../../../store/todos/taskSlice";
+
 
 import {
   startSetStatusIntask,
-  startSetTaskSelected,
 } from "../../../../store/todos/taskThunk";
 import { colored } from "../../../utils/colors";
 import { Status } from "../Status";
+import { useTaskSelection } from "../../hooks/useTaskSelection";
 
 export const ListTasksToView = () => {
   const { listTasks } = useSelector((state) => state.tasks);
 
   const dispatch = useDispatch();
 
-  const onClickTaskSelected = (task) => {
-    dispatch(startSetTaskSelected(task));
-
-    const updatedListTasks = listTasks.map((t) => ({
-      ...t,
-      enabled: t.id === task.id,
-    }));
-
-    dispatch(loadTasks(updatedListTasks));
-  };
+  const { onClickTaskSelected } = useTaskSelection();
 
   const onClickChecked = (task = {}, status = "") => {
     Swal.fire({

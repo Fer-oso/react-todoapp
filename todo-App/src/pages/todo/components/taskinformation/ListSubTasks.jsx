@@ -89,7 +89,7 @@ export const ListSubTasks = () => {
     <Container>
       <Title title={taskSelected.title} variant="h6" />
 
-      <Typography variant="body2">{taskSelected.description}</Typography>
+      <Typography variant="subtitle2">{taskSelected.description}</Typography>
 
       <Divider></Divider>
 

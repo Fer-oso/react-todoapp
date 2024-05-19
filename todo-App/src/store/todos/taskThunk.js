@@ -1,4 +1,3 @@
-import { doc } from "firebase/firestore/lite";
 import { createSubTaskData } from "../../provider/firebase/functions/todos/createSubtask";
 import { createTaskData } from "../../provider/firebase/functions/todos/createTask";
 import { loadListSubtasksData } from "../../provider/firebase/functions/todos/loadSubtasks";
@@ -10,19 +9,28 @@ import {
   createTask,
   loadSubtasks,
   loadTasks,
-  subtaskSelected,
+  setTaskSelected,
   subtaskSelectedChecked,
-  taskSelectedChecked,
-  taskSelectedEnabled,
 } from "./taskSlice";
 import { editTaskData } from "../../provider/firebase/functions/todos/editTask";
 import { editSubtaskData } from "../../provider/firebase/functions/todos/editSubtask";
 import { createCommentInSubtask } from "../../provider/firebase/functions/todos/createComment";
 import { createChangeinSubtask } from "../../provider/firebase/functions/todos/createChange";
+import { imageUpload } from "../../provider/cloudinary/imageUpload";
 
-export const startCreateTask = (task) => {
+export const startCreateTask = (task, images = []) => {
   return async (dispatch, getState) => {
     const { uid } = getState().authentication.userAuthenticated;
+
+    const imagesToNewTask = [];
+
+    for (const image of images) {
+      imagesToNewTask.push(imageUpload(image));
+    }
+
+    const imagesUploaded = await Promise.all(imagesToNewTask);
+
+    task.images = imagesUploaded;
 
     const taskCreated = await createTaskData(task, uid);
 
@@ -52,9 +60,9 @@ export const startSetTaskSelected = (taskSelected) => {
 
     const getTaskSelected = { ...taskSelected, subtasks: listSubtasks };
 
-    dispatch(taskSelectedEnabled(getTaskSelected));
-    
-    dispatch(startLoadSubtasks());
+    dispatch(setTaskSelected(getTaskSelected));
+
+    await editTaskData(getTaskSelected, uid);
   };
 };
 
@@ -62,18 +70,26 @@ export const startSetStatusIntask = (taskSelected) => {
   return async (dispatch, getState) => {
     const { uid } = getState().authentication.userAuthenticated;
 
-    delete taskSelected.enabled;
-
     await editTaskData(taskSelected, uid);
 
-    dispatch(taskSelectedChecked(taskSelected));
+    dispatch(setTaskSelected(taskSelected));
   };
 };
 
-export const startCreateSubTask = (subtask) => {
+export const startCreateSubTask = (subtask, images) => {
   return async (dispatch, getState) => {
     const { uid } = getState().authentication.userAuthenticated;
     const { id } = getState().tasks.taskSelected;
+
+    const imagesToSubTask = [];
+
+    for (const image of images) {
+      imagesToSubTask.push(imageUpload(image));
+    }
+
+    const imagesUploaded = await Promise.all(imagesToSubTask);
+
+    subtask.images = imagesUploaded;
 
     const subtaskCreated = await createSubTaskData(subtask, uid, id);
 
@@ -108,16 +124,20 @@ export const startSetStatusInSubtask = (taskSelectedId, subTaskSelected) => {
 
 export const startSetChangeInSubTask = (changes) => {
   return async (dispatch, getState) => {
-    dispatch( changeInSubtaskSelected(changes));
+    dispatch(changeInSubtaskSelected(changes));
 
-    const {uid} = getState().authentication.userAuthenticated;
+    const { uid } = getState().authentication.userAuthenticated;
 
-    const {taskSelected,subtaskSelected} = getState().tasks;
+    const { taskSelected, subtaskSelected } = getState().tasks;
 
-    await createChangeinSubtask(uid,taskSelected.id,subtaskSelected.id,changes);
+    await createChangeinSubtask(
+      uid,
+      taskSelected.id,
+      subtaskSelected.id,
+      changes
+    );
 
     dispatch(startLoadSubtasks());
-
   };
 };
 

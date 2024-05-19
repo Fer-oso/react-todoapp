@@ -20,6 +20,7 @@ import {
   RemoveRedEye
 } from "@mui/icons-material";
 import { subtaskSelected } from "../../../../store/todos/taskSlice";
+import { ImageGallery } from "../ImageGallery";
 
 export const TaskSelectedInformation = () => {
   
@@ -40,6 +41,12 @@ export const TaskSelectedInformation = () => {
                   textAlign={"center"}
                 />
               </Divider>
+
+              <Typography variant="subtitle2">
+                {taskSelected.description}
+              </Typography>
+
+              <ImageGallery images = {taskSelected.images} />
 
               <TextField
                 id="outlined-basic"
@@ -90,7 +97,7 @@ export const TaskSelectedInformation = () => {
                         key={index}
                       >
                         <ListItemButton key={index} disableGutters  onClick={() => dispatch(subtaskSelected(subtask))}>
-                          <Checkbox edge="start" color="success" size="small" />
+                          <Checkbox edge="start" color="success" size="small" checked={subtask.status === "finished"} disabled={subtask.status === "finished"} />
                           <Typography fontSize={14} variant="caption">
                             {subtask.title}
                           </Typography>
