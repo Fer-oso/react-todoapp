@@ -19,12 +19,11 @@ export const TaskInformation = () => {
         <>
           {!!subtaskSelected ? (
             <>
-              
               <Typography variant="subtitle2">
                 {subtaskSelected.description}
               </Typography>
 
-              <ImageGallery images = {subtaskSelected.images}/>
+              <ImageGallery images={subtaskSelected.images} />
 
               <Typography
                 marginTop={2}
@@ -34,8 +33,6 @@ export const TaskInformation = () => {
               >
                 Changes history
               </Typography>
-
-          
 
               <ChangesHistory />
             </>

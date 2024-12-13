@@ -3,63 +3,74 @@ import {
   Container,
   Divider,
   Grid,
+  IconButton,
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import { Title } from "../Title";
 import { useForm } from "../../../hooks/useForm";
-import { comments, generalForm } from "../../../../data/task";
+import { changes } from "../../../../data/task";
 import { useDispatch } from "react-redux";
-import { startSetChangeInSubTask, startSetCommentInSubTask } from "../../../../store/todos/taskThunk";
+import {
+  startSetChangeInSubTask,
+  startSetCommentInSubTask,
+} from "../../../../store/todos/taskThunk";
 import Swal from "sweetalert2";
+import { Image } from "@mui/icons-material";
 
 export const CommentTaskSelected = () => {
-  const { formState, onInputChange } = useForm(generalForm);
+  const { formState, onInputChange } = useForm(changes);
 
   const dispatch = useDispatch();
 
-  const onclickChangesButton = () => {
+  const ref = useRef();
 
-   Swal.fire({
-     title: "Do you want to save the changes?",
-     showDenyButton: true,
-     showCancelButton: true,
-     confirmButtonText: "Save",
-     denyButtonText: `Don't save`,
-   }).then((result) => {
-     if (result.isConfirmed) {
-       Swal.fire("Saved!", "", "success");
-      dispatch(startSetChangeInSubTask(formState));
-     } else if (result.isDenied) {
-       Swal.fire("Changes are not saved", "", "info");
-     }
-   });
+  let images = [];
+
+  const onChangeInputImages = ({ target }) => {
+    if (target.files === 0) return;
+    images = target.files;
+  };
+
+  const onclickChangesButton = () => {
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+        dispatch(startSetChangeInSubTask(formState, images));
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   };
 
   const onclickCommentButton = () => {
-
-  (async () => {
-    const { value: severity } = await Swal.fire({
-      title: "Select field validation",
-      input: "select",
-      inputOptions: {
-        Severity: {
-          success: "Finished",
-          info: "In proccess",
-          warning: "Pending",
-          error: "Paused",
+    (async () => {
+      const { value: severity } = await Swal.fire({
+        title: "Select field validation",
+        input: "select",
+        inputOptions: {
+          Severity: {
+            success: "Finished",
+            info: "In proccess",
+            warning: "Pending",
+            error: "Paused",
+          },
         },
-      },
-      inputPlaceholder: "Select a severity for the comment",
-      showCancelButton: true,
-    });
-    if (severity) {
-      Swal.fire(`You selected: ${severity}`);
-      dispatch(startSetCommentInSubTask({...formState,severity}));
-    }
-  })();
-  
+        inputPlaceholder: "Select a severity for the comment",
+        showCancelButton: true,
+      });
+      if (severity) {
+        Swal.fire(`You selected: ${severity}`);
+        dispatch(startSetCommentInSubTask({ ...formState, severity }));
+      }
+    })();
   };
 
   return (
@@ -82,6 +93,23 @@ export const CommentTaskSelected = () => {
                 name="text"
                 onChange={onInputChange}
               />
+            </Grid>
+          </Grid>
+
+          <Grid container sx={{ mb: 2, mt: 1, ml: 0 }}>
+            <Grid item xs={12} md={6}>
+              <input
+                type="file"
+                multiple
+                onChange={onChangeInputImages}
+                style={{ display: "none" }}
+                ref={ref}
+              />
+
+              <IconButton color="secondary" onClick={() => ref.current.click()}>
+                <Image sx={{ fontSize: 30, mr: 1 }} />
+                <Typography>Select images</Typography>
+              </IconButton>
             </Grid>
           </Grid>
 

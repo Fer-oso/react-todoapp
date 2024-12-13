@@ -1,6 +1,13 @@
-import { Avatar, ListItem, ListItemAvatar, Typography } from "@mui/material";
+import {
+  Avatar,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import { ImageGallery } from "../ImageGallery";
 
 export const ChangeHistoryComments = () => {
   const { subtaskSelected } = useSelector((state) => state.tasks);
@@ -15,20 +22,28 @@ export const ChangeHistoryComments = () => {
               src="../../../img/profiles/profile-man.jpg"
             />
           </ListItemAvatar>
-          <Typography variant="body2" fontWeight={"fontWeightBold"}>
-            Fernando Osorio{" "}
-            <Typography variant="body2" component={"em"}>
-              <Typography
-                variant="body2"
-                component={"u"}
-                fontWeight={"fontWeightBold"}
-              >
-                {change.date}
-              </Typography>
-              <br></br>
-              {change.text}
-            </Typography>
-          </Typography>
+          <ListItemText
+            primary={
+              <>
+                <Typography
+                  variant="body1"
+                  fontWeight={"fontWeightBold"}
+                  sx={{ color: "black" }}
+                >
+                  Fernando Osorio: {change.date}
+                </Typography>
+              </>
+            }
+            secondary={
+              <>
+                <Typography variant="body1" sx={{ color: "black" }}>
+                  {change.text}
+                </Typography>
+                <br />
+                <ImageGallery images={change.images} />
+              </>
+            }
+          />
         </ListItem>
       ))}
     </>

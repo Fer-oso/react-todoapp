@@ -43,6 +43,7 @@ export const changes = {
   user: "",
   date: dayFormater(),
   text: "",
+  images: [],
 };
 
 export const generalForm = {

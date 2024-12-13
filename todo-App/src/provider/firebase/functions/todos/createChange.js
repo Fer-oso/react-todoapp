@@ -1,7 +1,6 @@
 import { arrayUnion, doc, updateDoc } from "firebase/firestore/lite";
 import { firebaseStore } from "../../config/config";
 
-
 export const createChangeinSubtask = async (
   uid,
   taskSelectedId,
@@ -14,4 +13,6 @@ export const createChangeinSubtask = async (
   );
 
   await updateDoc(subtaskDataRef, { changes: arrayUnion(changes) });
+
+  return changes;
 };

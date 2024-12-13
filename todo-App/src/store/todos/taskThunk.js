@@ -91,6 +91,8 @@ export const startCreateSubTask = (subtask, images) => {
 
     subtask.images = imagesUploaded;
 
+    subtask.status = "pending";
+
     const subtaskCreated = await createSubTaskData(subtask, uid, id);
 
     dispatch(createSubTask(subtaskCreated));
@@ -122,20 +124,30 @@ export const startSetStatusInSubtask = (taskSelectedId, subTaskSelected) => {
   };
 };
 
-export const startSetChangeInSubTask = (changes) => {
+export const startSetChangeInSubTask = (changes, images = []) => {
   return async (dispatch, getState) => {
-    dispatch(changeInSubtaskSelected(changes));
-
     const { uid } = getState().authentication.userAuthenticated;
 
     const { taskSelected, subtaskSelected } = getState().tasks;
 
-    await createChangeinSubtask(
+    const imagesToNewTask = [];
+
+    for (const image of images) {
+      imagesToNewTask.push(imageUpload(image));
+    }
+
+    const imagesUploaded = await Promise.all(imagesToNewTask);
+
+    changes.images = imagesUploaded;
+
+    const subTaskSelectedWithnewChanges = await createChangeinSubtask(
       uid,
       taskSelected.id,
       subtaskSelected.id,
       changes
     );
+
+    dispatch(changeInSubtaskSelected(subTaskSelectedWithnewChanges));
 
     dispatch(startLoadSubtasks());
   };
